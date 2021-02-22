@@ -36,9 +36,5 @@
     "build",
     "node_modules"
   ],
-  "include": [
-    "./**/*.ts",
-    "./.**/*.ts*",
-    "cli/**/*.ts"
-  ]
+  "include": ["**/*.js", ".*.js", "**/*.ts", "**/*.tsx"]
 }

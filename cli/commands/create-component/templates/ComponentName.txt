@@ -1,0 +1,15 @@
+import { styled } from "@fluentui/react/lib/Utilities";
+
+import { ComponentNameBase } from "./ComponentName.base";
+import { getStyles } from "./ComponentName.styles";
+import {
+	ComponentNameProps,
+	ComponentNameStyleProps,
+	ComponentNameStyles,
+} from "./ComponentName.types";
+
+export const ComponentName = styled<
+	ComponentNameProps,
+	ComponentNameStyleProps,
+	ComponentNameStyles
+>(ComponentNameBase, getStyles, undefined, undefined, true);

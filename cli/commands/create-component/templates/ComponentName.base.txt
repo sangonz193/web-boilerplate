@@ -1,0 +1,20 @@
+import { classNamesFunction } from "@fluentui/react/lib/Utilities";
+import React from "react";
+
+import {
+	ComponentNameProps,
+	ComponentNameStyleProps,
+	ComponentNameStyles,
+} from "./ComponentName.types";
+
+const getClassNames = classNamesFunction<
+	ComponentNameStyleProps,
+	ComponentNameStyles
+>();
+
+export const ComponentNameBase = (props: ComponentNameProps) => {
+	const { styles, theme } = props as Required<Pick<typeof props, "styles" | "theme">>;
+	const classNames = getClassNames(styles, { theme, className: props.className });
+
+	return <div className={classNames.root} />;
+};

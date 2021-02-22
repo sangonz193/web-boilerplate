@@ -1,0 +1,4 @@
+export * from "./ComponentName.base";
+export * from "./ComponentName.styles";
+export * from "./ComponentName.types";
+export * from "./ComponentName";

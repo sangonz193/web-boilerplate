@@ -1,24 +1,33 @@
 {
   "name": "web-boilerplate",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.11",
+    "@fluentui/react": "^8.0.0-beta.58",
+    "graphql": "^15.5.0",
+    "history": "^5.0.0",
+    "keyboard-key": "^1.1.0",
+    "lodash": "^4.17.21",
+    "path-to-regexp": "^6.2.0",
+    "query-string": "^5.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "web-vitals": "^1.1.0"
+    "selector-observer": "^2.1.6",
+    "web-vitals": "^1.1.0",
+    "yup": "^0.32.9"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "node cli dev",
+    "generate-files": "node cli generate-files",
+    "build": "node cli  build",
+    "test": "react-scripts test"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sangonz193/web-boilerplate.git"
   },
+  "author": "Santiago Gonzalez",
+  "license": "MIT",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -32,6 +41,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/register": "^7.12.13",
+    "@graphql-codegen/cli": "^1.20.1",
+    "@graphql-codegen/near-operation-file-preset": "^1.17.13",
+    "@graphql-codegen/typescript": "^1.21.0",
+    "@graphql-codegen/typescript-operations": "^1.17.14",
+    "@graphql-codegen/typescript-react-apollo": "^2.2.1",
+    "@graphql-codegen/typescript-resolvers": "^1.18.2",
+    "@graphql-toolkit/code-file-loader": "^0.10.7",
+    "@graphql-toolkit/core": "^0.10.7",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
@@ -39,7 +57,21 @@
     "@types/node": "^14.14.31",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "@types/semver": "^7.3.4",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "axios": "^0.21.1",
+    "chokidar": "^3.5.1",
+    "eslint-config-prettier": "^8.0.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "glob": "^7.1.6",
+    "patch-package": "^6.2.2",
+    "prettier": "^2.2.1",
+    "promisify-child-process": "^4.1.1",
     "react-scripts": "4.0.2",
-    "typescript": "^4.1.5"
+    "semver": "^7.3.4",
+    "typescript": "^4.1.5",
+    "yargs": "^16.2.0"
   }
 }
