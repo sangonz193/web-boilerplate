@@ -35,7 +35,6 @@ export const generateRemoteSchemaTypes = async (remoteSchema: string): Promise<s
 	)[0];
 
 	await fs.writeFile(remoteSchemaTypesFilePath, getFormattedCode(generatedFileHeaderContent + codegenResult.content));
-	console.log(codegenResult);
 
 	return remoteSchemaTypesFilePath;
 };

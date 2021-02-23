@@ -10,6 +10,7 @@ import { fsExists } from "../../_utils/fsExists";
 import { getFormattedCode } from "../../_utils/getFormattedCode";
 import { projectPath } from "../../_utils/projectPath";
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
+import { getMatchingFilePaths } from "./_utils/getMatchingFilePaths";
 
 export type GenerateOperationFilesOptions = {
 	remoteSchema: string;
@@ -96,10 +97,16 @@ export const generateOperationFiles = async (options: GenerateOperationFilesOpti
 	const { watch } = options;
 	const graphqlFilesPattern = path.resolve(projectPath, "src", "**", "*.graphql.ts");
 
-	await runCodegen(options, graphqlFilesPattern);
+	if (
+		(await getMatchingFilePaths(graphqlFilesPattern)).filter(
+			(filePath) => !path.basename(filePath).startsWith("remoteSchema.graphql")
+		).length > 0
+	) {
+		await runCodegen(options, graphqlFilesPattern);
+	}
 
 	if (watch) {
-		const watcher = chokidar.watch(graphqlFilesPattern, {ignoreInitial: true});
+		const watcher = chokidar.watch(graphqlFilesPattern, { ignoreInitial: true });
 
 		watcher
 			.on("add", (filePath) => runCodegen(options, filePath))
