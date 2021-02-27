@@ -1,6 +1,7 @@
 import { CommandModule } from "yargs";
 
 import { generateAssetsTypes } from "./generateAssetsTypes";
+import { generateComponentIndexes } from "./generateComponentIndexes";
 import { generateOperationFiles } from "./generateOperationFiles";
 import { generatePossibleTypes } from "./generatePossibleTypes";
 import { generateRemoteSchema } from "./generateRemoteSchema";
@@ -37,7 +38,14 @@ const command: CommandModule<{}, { watch: boolean }> = {
 					watch,
 				});
 			}),
-			generatePossibleTypes(),
+			remoteSchemaPromise.then(({ updatedFromRemote }) => {
+				if (!updatedFromRemote) {
+					return;
+				}
+
+				return generatePossibleTypes();
+			}),
+			generateComponentIndexes(watch),
 		]);
 	},
 };

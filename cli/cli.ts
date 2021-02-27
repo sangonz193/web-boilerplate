@@ -1,28 +1,14 @@
 import path from "path";
 import yargs, { CommandModule } from "yargs";
 
-import { fs } from "./_utils/fs";
+import { getSubCommands } from "./_utils/getSubCommands";
 
 (async () => {
-	const commands: Array<CommandModule<unknown, unknown>> = [];
-
 	const commandsDirPath = path.resolve(__dirname, "commands");
-	const commandsDirItems = await fs.readdir(commandsDirPath);
-	await Promise.all(
-		commandsDirItems.map(async (commandsDirItem) => {
-			const commandsDirItemPath = path.resolve(commandsDirPath, commandsDirItem);
-
-			if ((await fs.lstat(commandsDirItemPath)).isDirectory()) {
-				const nestedDirItems = await fs.readdir(commandsDirItemPath);
-
-				const commandFile = nestedDirItems.find((nestedDirItem) => nestedDirItem.endsWith(".command.ts"));
-
-				if (commandFile) {
-					commands.push(require(path.resolve(commandsDirItemPath, commandFile)).default);
-				}
-			}
-		})
-	);
+	const commands: Array<CommandModule<unknown, unknown>> =
+		process.argv[2] === "generate-files"
+			? [require(path.resolve(commandsDirPath, "generate-files", "generate-files.command.ts")).default]
+			: await getSubCommands(commandsDirPath);
 
 	const _yargs = yargs.scriptName("node cli");
 

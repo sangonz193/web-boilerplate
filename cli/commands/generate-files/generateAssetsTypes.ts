@@ -5,10 +5,10 @@ import { dangerousKeysOf } from "../../_utils/dangerousKeysOf";
 import { fs } from "../../_utils/fs";
 import { fsExists } from "../../_utils/fsExists";
 import { getFormattedCode } from "../../_utils/getFormattedCode";
+import { getMatchingFilePaths } from "../../_utils/getMatchingFilePaths";
 import { identityMap } from "../../_utils/identityMap";
 import { projectPath } from "../../_utils/projectPath";
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
-import { getMatchingFilePaths } from "./_utils/getMatchingFilePaths";
 
 type AssetExtension = "svg" | "png" | "jpeg" | "jpg" | "ttf";
 
