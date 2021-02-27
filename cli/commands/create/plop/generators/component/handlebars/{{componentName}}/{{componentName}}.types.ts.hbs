@@ -1,0 +1,9 @@
+import * as React from 'react';
+import { ComponentProps } from '@fluentui/react-utilities';
+
+export type {{componentName}}Props = ComponentProps & React.HTMLAttributes<HTMLElement> & {
+}
+
+export type {{componentName}}State = {{componentName}}Props & {
+  ref: React.MutableRefObject<HTMLElement>;
+}
