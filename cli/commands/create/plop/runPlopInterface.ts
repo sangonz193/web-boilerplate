@@ -5,7 +5,7 @@ import { Plop, run } from "plop";
 import {
 	ComponentPlopGeneratorAnswers,
 	getComponentPlopGeneratorBypassArgsFromAnswers,
-} from "./generators/component/component.plop-generator";
+} from "../commands/component/component.plop-generator";
 
 export type PlopGeneratorConfigMap = {
 	component: ComponentPlopGeneratorAnswers;

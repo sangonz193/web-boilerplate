@@ -2,9 +2,9 @@ import identity from "lodash/identity";
 import path from "path";
 import { AddManyActionConfig } from "plop";
 
-import { getFormattedCode } from "../../../../../_utils/getFormattedCode";
-import { projectPath } from "../../../../../_utils/projectPath";
-import { GetPlopGeneratorConfig } from "../GetPlopGeneratorConfig";
+import { getFormattedCode } from "../../../../_utils/getFormattedCode";
+import { projectPath } from "../../../../_utils/projectPath";
+import { GetPlopGeneratorConfig } from "../../plop/GetPlopGeneratorConfig";
 
 export type ComponentPlopGeneratorAnswers = {
 	name: string;

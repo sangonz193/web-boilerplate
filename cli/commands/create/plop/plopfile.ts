@@ -7,7 +7,7 @@ export default (plop: NodePlopAPI) => {
 	plop.setWelcomeMessage("This utility is a helper to create converged React components");
 
 	const matchingFilePaths = getMatchingFilePathsSync(
-		path.resolve(path.resolve(__dirname, "generators"), "**", "*.plop-generator.ts")
+		path.resolve(__dirname, "..", "commands", "**", "*.plop-generator.ts")
 	);
 	matchingFilePaths.forEach((matchingFilePath) => {
 		const generatorName = matchingFilePath.match(/(\w+)\.plop-generator\.ts$/)?.[1];
