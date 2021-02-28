@@ -1,14 +1,18 @@
 import "./index.css";
 
+import { webDarkTheme } from "@fluentui/react-theme";
+import { ThemeProvider } from "@fluentui/react-theme-provider";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./App";
+import { App } from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<ThemeProvider theme={webDarkTheme}>
+			<App />
+		</ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

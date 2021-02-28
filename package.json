@@ -22,7 +22,8 @@
     "dev": "node cli dev",
     "generate-files": "node cli generate-files",
     "build": "node cli  build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "postinstall": "patch-package"
   },
   "repository": {
     "type": "git",
