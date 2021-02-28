@@ -1,8 +1,15 @@
-import * as React from 'react';
-import { makeMergeProps, resolveShorthandProps, useMergedRefs } from '@fluentui/react-utilities';
-import { {{componentName}}Props, {{componentName}}State } from './{{componentName}}.types';
+import React from 'react';
+import { makeMergeProps, resolveShorthandProps } from '@fluentui/react-utilities';
+import identity from "lodash/identity";
 
-export const {{camelCase componentName}}ShorthandProps: (keyof {{componentName}}Props)[] = [];
+import { dangerousKeysOf } from "{{dangerousKeysOfImportPath}}";
+import { {{componentName}}Defaults, {{componentName}}Props, {{componentName}}ShorthandProps, {{componentName}}State } from './{{componentName}}.types';
+
+export const {{camelCase componentName}}ShorthandProps = dangerousKeysOf(
+	identity<Record<keyof {{componentName}}ShorthandProps, 0>>({
+		_: 0,
+	})
+);
 
 const mergeProps = makeMergeProps<{{componentName}}State>({ deepMerge: {{camelCase componentName}}ShorthandProps });
 
@@ -11,10 +18,15 @@ export const use{{componentName}} = (
   ref: React.Ref<HTMLElement>,
   defaultProps?: {{componentName}}Props,
 ): {{componentName}}State => {
-  const state = mergeProps(
-    {
-      ref: useMergedRefs(ref, React.useRef(null))
+  const defaults: {{componentName}}Defaults = {
+    ref,
+    as: "div",
+    _: {
+      as: "span",
     },
+  };
+  const state = mergeProps(
+    defaults,
     defaultProps,
     resolveShorthandProps(props, {{camelCase componentName}}ShorthandProps),
   );

@@ -4,6 +4,7 @@ import { AddManyActionConfig } from "plop";
 
 import { getFormattedCode } from "../../../../_utils/getFormattedCode";
 import { projectPath } from "../../../../_utils/projectPath";
+import { getImportPath } from "../../../generate-files/_utils/getImportPath";
 import { GetPlopGeneratorConfig } from "../../plop/GetPlopGeneratorConfig";
 
 export type ComponentPlopGeneratorAnswers = {
@@ -57,14 +58,23 @@ const getConfig: GetPlopGeneratorConfig = (plop) => ({
 
 		const handlebarsFolderPath = path.resolve(__dirname, "handlebars");
 		const handlebarsFilePathPattern = path.resolve(handlebarsFolderPath, "**", "*");
+		const destination = renderString(path.resolve(projectPath, answers.relativePath));
 
 		return [
 			identity<AddManyActionConfig>({
 				type: "addMany",
 				data: {
 					componentName: answers.name,
+					dangerousKeysOfImportPath: getImportPath(
+						path.resolve(destination, "_", "_"),
+						path.resolve(projectPath, "src", "_utils", "dangerousKeysOf.ts")
+					),
+					propsToStateImportPath: getImportPath(
+						path.resolve(destination, "_", "_"),
+						path.resolve(projectPath, "src", "_utils", "PropsToState.ts")
+					),
 				},
-				destination: renderString(path.resolve(projectPath, answers.relativePath)),
+				destination,
 				templateFiles: [handlebarsFilePathPattern],
 				globOptions: {
 					dot: true,
@@ -72,7 +82,7 @@ const getConfig: GetPlopGeneratorConfig = (plop) => ({
 				verbose: true,
 				skipIfExists: false,
 				base: handlebarsFolderPath,
-				path: path.resolve(projectPath, "src", "components", answers.name),
+				path: "",
 				transform: getFormattedCode,
 			}),
 		];
