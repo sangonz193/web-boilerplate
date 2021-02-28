@@ -86,3 +86,16 @@ index ba8fd0b..f32b053 100644
      ].filter(Boolean),
      // Some libraries import Node modules but don't use them in the browser.
      // Tell webpack to provide empty mocks for them so importing them works.
+diff --git a/node_modules/react-scripts/scripts/start.js b/node_modules/react-scripts/scripts/start.js
+index ffbb15d..b3cef7d 100644
+--- a/node_modules/react-scripts/scripts/start.js
++++ b/node_modules/react-scripts/scripts/start.js
+@@ -156,7 +156,7 @@ checkBrowsers(paths.appPath, isInteractive)
+       }
+ 
+       console.log(chalk.cyan('Starting the development server...\n'));
+-      openBrowser(urls.localUrlForBrowser);
++      // openBrowser(urls.localUrlForBrowser);
+     });
+ 
+     ['SIGINT', 'SIGTERM'].forEach(function (sig) {

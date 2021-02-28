@@ -10,9 +10,8 @@ const command: CommandModule<{}, {}> = {
 	describe: "Commands to create different types of common code files, like components.",
 
 	builder: (yargs) => {
-		getSubCommandsSync(path.resolve(__dirname, "commands")).forEach((command) => {
-			yargs.command(command);
-		});
+		const commandsFolderPath = path.resolve(__dirname, "commands");
+		getSubCommandsSync(commandsFolderPath).forEach((command) => yargs.command(command));
 
 		return yargs;
 	},
