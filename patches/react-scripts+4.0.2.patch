@@ -64,7 +64,7 @@ index 0ad47cb..94bcd4e 100644
 -// Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
 -// injected into the application via DefinePlugin in webpack configuration.
 -const REACT_APP = /^REACT_APP_/i;
-+const appEnvVariables = Object.keys(dotenv.parse(fs.readFileSync(".env.example")));
++const appEnvVariables = Object.keys(dotenv.parse(fs.readFileSync(".env.app")));
  
  function getClientEnvironment(publicUrl) {
    const raw = Object.keys(process.env)

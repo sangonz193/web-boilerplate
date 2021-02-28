@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+# Web boilerplate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setting the development environment
 
-## Available Scripts
+### Version requirements
 
-In the project directory, you can run:
+-   [Node.js](https://nodejs.org/en/): **v15**
+    -   It is recommended that you install Node.js with [nvm](https://github.com/nvm-sh/nvm), as it allows you to change between versions easily.
+-   [npm](https://www.npmjs.com/): **v6**
+    -   It is important to match the npm version as a different one may cause changes to the _package-lock.json_ file. You can install this npm version by running `npm i -g npm@6`
+-   [Server boilerplate](https://github.com/sangonz193/server-boilerplate): **v0.0.1**
+    -   This boilerplate is intended to work with an instance of the Server boilerplate. You may setup an instance following the repositories _README.md_.
 
-### `npm start`
+### Setup steps
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+-   Clone this repository and open a terminal inside of it.
+-   Run `npm i` to install dependencies.
+-   You must create a _.env_ file at the root of the project that contains the same environment variables listed in _.env.app_ and also _.env.cli_. You may start with copying the entire content of the _.env.app_ file (`cp .env.app .env`) and modifying the values as you find it necessary, and then adding the entries from _.env.cli_ `cat .env.cli >> .env`.
+    > Note: Only the variables defined in the _.env.app_ file will be read by the app. The cli utility has access to the variables listed in both files. In both cases, the values assigned to each variable will be those defined in the _.env_ file.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Running the app in development mode
 
-### `npm test`
+Run the command `npm run dev` (or `node cli dev`) to run the dev server. Depending on the value of the `PORT` environment variable in the `.env` file, the app will be available at _http<span></span>://localhost:$PORT`_.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Included command line utility
 
-### `npm run build`
+Apart from the app itself, this project contains a cli utility that you may find useful while developing. To invoke it, you will run `node cli <command>` at the root of the project. For information about it, you can run `node cli --help` which will list all available commands. For more information about a specific command, you may run `node cli <command> --help` where _[command]_ is the name of a command from the previous list.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[MIT](https://choosealicense.com/licenses/mit/)
