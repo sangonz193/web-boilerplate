@@ -69,64 +69,7 @@ type TypePolicies = {
 }
 
 export const createGraphqlClient = () => {
-	const typePolicies: TypePolicies = {
-		Query: {
-			fields: {
-				courseById: {
-					read: (existing, options) =>
-						existing || options.toReference({ __typename: "Course", id: options.args?.id }),
-				},
-
-				courseByCode: {
-					read: (existing, options) => {
-						if (existing) {
-							return existing
-						}
-
-						// eslint-disable-next-line @typescript-eslint/no-use-before-define
-						const id = Object.values(cache.extract()).find(
-							(i) => i?.__typename === "Course" && (i.code ?? "") === options.args?.code
-						)?.id
-
-						return options.toReference({ __typename: "Course", id })
-					},
-				},
-
-				courseClassById: {
-					read: (existing, options) =>
-						existing || options.toReference({ __typename: "CourseClass", id: options.args?.id }),
-				},
-
-				courseClassListById: {
-					read: (existing, options) =>
-						existing || options.toReference({ __typename: "CourseClassList", id: options.args?.id }),
-				},
-
-				courseClassListByCode: {
-					read: (existing, options) => {
-						if (options.args?.code === "prog3-2018") {
-							debugger
-						}
-						if (existing) {
-							return existing
-						}
-
-						// eslint-disable-next-line @typescript-eslint/no-use-before-define
-						const id = Object.values(cache.extract()).find(
-							(i) => i?.__typename === "CourseClassList" && (i.code ?? "") === options.args?.code
-						)?.id
-
-						return options.toReference({ __typename: "CourseClassList", id })
-					},
-				},
-
-				courseEditionById: {
-					read: (existing, options) =>
-						existing || options.toReference({ __typename: "CourseEdition", id: options.args?.id }),
-				},
-			},
-		},
-	}
+	const typePolicies: TypePolicies = {}
 
 	const cache: InMemoryCache = new InMemoryCache({
 		addTypename: true,
