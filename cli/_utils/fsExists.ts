@@ -1,14 +1,14 @@
-import { fs } from "./fs";
+import { fs } from "./fs"
 
 export const fsExists = async (itemPath: string): Promise<boolean> => {
 	try {
-		await fs.stat(itemPath);
-		return true;
+		await fs.stat(itemPath)
+		return true
 	} catch (e) {
 		if (e.code === "ENOENT") {
-			return false;
+			return false
 		}
 
-		throw e;
+		throw e
 	}
-};
+}

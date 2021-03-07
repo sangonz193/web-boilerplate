@@ -1,6 +1,6 @@
-import { CommandModule } from "yargs";
+import { CommandModule } from "yargs"
 
-import { runPlopInterface } from "../../plop/runPlopInterface";
+import { runPlopInterface } from "../../plop/runPlopInterface"
 
 const command: CommandModule<{}, { name?: string; relativePath?: string }> = {
 	command: "component [name] [relativePath]",
@@ -28,8 +28,8 @@ const command: CommandModule<{}, { name?: string; relativePath?: string }> = {
 				name: args.name,
 				relativePath: args.relativePath,
 			},
-		});
+		})
 	},
-};
+}
 
-export default command;
+export default command

@@ -3,4 +3,4 @@
  * next time the file gets generated.
  */
 
-export const possibleTypes = {};
+export const possibleTypes = {}
