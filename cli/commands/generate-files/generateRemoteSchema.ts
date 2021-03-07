@@ -20,17 +20,20 @@ export const generateRemoteSchema = async () => {
 		.required()
 		.validate(process.env);
 
-	let writeToLocalFile = true;
+	let writeToLocalFile = false;
 	let remoteSchema: GraphQLSchema | null = null;
 
 	if (BACKEND_URL) {
 		remoteSchema = await loadSchema(`${BACKEND_URL}/graphql`, {
 			loaders: [new UrlLoader()],
 		}).catch(() => {
-			writeToLocalFile = false;
 			console.log(chalk.yellow("Could not load remote schema. Using local file."));
 			return null;
 		});
+
+		if (remoteSchema) {
+			writeToLocalFile = true;
+		}
 	}
 
 	if (remoteSchema === null) {
