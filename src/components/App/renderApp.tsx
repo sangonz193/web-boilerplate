@@ -9,7 +9,7 @@ export const renderApp = (state: AppState) => {
 		<slots.root>
 			<slots.header>
 				<slots.headerContent>
-					<slots.headerContentCode {...slotProps.headerContentCode} />
+					<slots.headerContentCode />
 				</slots.headerContent>
 			</slots.header>
 
