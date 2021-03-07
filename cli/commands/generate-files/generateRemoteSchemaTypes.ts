@@ -1,23 +1,23 @@
-import { executeCodegen } from "@graphql-codegen/cli";
-import * as typescriptPlugin from "@graphql-codegen/typescript";
-import path from "path";
+import { executeCodegen } from "@graphql-codegen/cli"
+import * as typescriptPlugin from "@graphql-codegen/typescript"
+import path from "path"
 
-import { fs } from "../../_utils/fs";
-import { getFormattedCode } from "../../_utils/getFormattedCode";
-import { projectPath } from "../../_utils/projectPath";
-import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
+import { fs } from "../../_utils/fs"
+import { getFormattedCode } from "../../_utils/getFormattedCode"
+import { projectPath } from "../../_utils/projectPath"
+import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"
 
 export const generateRemoteSchemaTypes = async (remoteSchema: string): Promise<string> => {
-	const remoteSchemaTypesFilePath = path.resolve(projectPath, "src", "graphql", "remoteSchema.types.ts");
+	const remoteSchemaTypesFilePath = path.resolve(projectPath, "src", "graphql", "remoteSchema.types.ts")
 	const codegenResult = (
 		await executeCodegen({
 			schema: remoteSchema,
 			pluginLoader: (name) => {
 				if (name.endsWith("typescript")) {
-					return typescriptPlugin;
+					return typescriptPlugin
 				}
 
-				throw new Error(name + " not found");
+				throw new Error(name + " not found")
 			},
 			generates: {
 				[remoteSchemaTypesFilePath]: {
@@ -32,9 +32,9 @@ export const generateRemoteSchemaTypes = async (remoteSchema: string): Promise<s
 				},
 			},
 		})
-	)[0];
+	)[0]
 
-	await fs.writeFile(remoteSchemaTypesFilePath, getFormattedCode(generatedFileHeaderContent + codegenResult.content));
+	await fs.writeFile(remoteSchemaTypesFilePath, getFormattedCode(generatedFileHeaderContent + codegenResult.content))
 
-	return remoteSchemaTypesFilePath;
-};
+	return remoteSchemaTypesFilePath
+}

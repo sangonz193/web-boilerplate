@@ -1,40 +1,40 @@
-import { executeCodegen } from "@graphql-codegen/cli";
-import * as typescriptPlugin from "@graphql-codegen/typescript";
-import * as typescriptOperationsPlugin from "@graphql-codegen/typescript-operations";
-import * as typescriptReactApolloPlugin from "@graphql-codegen/typescript-react-apollo";
-import chokidar from "chokidar";
-import path from "path";
+import { executeCodegen } from "@graphql-codegen/cli"
+import * as typescriptPlugin from "@graphql-codegen/typescript"
+import * as typescriptOperationsPlugin from "@graphql-codegen/typescript-operations"
+import * as typescriptReactApolloPlugin from "@graphql-codegen/typescript-react-apollo"
+import chokidar from "chokidar"
+import path from "path"
 
-import { fs } from "../../_utils/fs";
-import { fsExists } from "../../_utils/fsExists";
-import { getFormattedCode } from "../../_utils/getFormattedCode";
-import { getMatchingFilePaths } from "../../_utils/getMatchingFilePaths";
-import { projectPath } from "../../_utils/projectPath";
-import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
+import { fs } from "../../_utils/fs"
+import { fsExists } from "../../_utils/fsExists"
+import { getFormattedCode } from "../../_utils/getFormattedCode"
+import { getMatchingFilePaths } from "../../_utils/getMatchingFilePaths"
+import { projectPath } from "../../_utils/projectPath"
+import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"
 
 export type GenerateOperationFilesOptions = {
-	remoteSchema: string;
-	remoteSchemaTypesFilePath: string;
-	watch: boolean;
-};
+	remoteSchema: string
+	remoteSchemaTypesFilePath: string
+	watch: boolean
+}
 
 const runCodegen = async (options: GenerateOperationFilesOptions, graphqlFilesPattern: string) => {
-	const { remoteSchema, remoteSchemaTypesFilePath } = options;
+	const { remoteSchema, remoteSchemaTypesFilePath } = options
 
 	const codegenResult = await executeCodegen({
 		schema: remoteSchema,
 		pluginLoader: (name) => {
 			if (name.endsWith("typescript")) {
-				return typescriptPlugin;
+				return typescriptPlugin
 			}
 			if (name.endsWith("typescriptReactApollo")) {
-				return typescriptReactApolloPlugin;
+				return typescriptReactApolloPlugin
 			}
 			if (name.endsWith("typescriptOperations")) {
-				return typescriptOperationsPlugin;
+				return typescriptOperationsPlugin
 			}
 
-			throw new Error(name + " not found");
+			throw new Error(name + " not found")
 		},
 		generates: {
 			[remoteSchemaTypesFilePath]: {
@@ -76,7 +76,7 @@ const runCodegen = async (options: GenerateOperationFilesOptions, graphqlFilesPa
 				],
 			},
 		},
-	});
+	})
 
 	await Promise.all(
 		codegenResult.map(async (i) => {
@@ -88,35 +88,35 @@ const runCodegen = async (options: GenerateOperationFilesOptions, graphqlFilesPa
 							? i.content.replace(/import \* as Types.+\n(\n)?/, "")
 							: i.content)
 				)
-			);
+			)
 		})
-	);
-};
+	)
+}
 
 export const generateOperationFiles = async (options: GenerateOperationFilesOptions): Promise<void> => {
-	const { watch } = options;
-	const graphqlFilesPattern = path.resolve(projectPath, "src", "**", "*.graphql.ts");
+	const { watch } = options
+	const graphqlFilesPattern = path.resolve(projectPath, "src", "**", "*.graphql.ts")
 
 	if (
 		(await getMatchingFilePaths(graphqlFilesPattern)).filter(
 			(filePath) => !path.basename(filePath).startsWith("remoteSchema.graphql")
 		).length > 0
 	) {
-		await runCodegen(options, graphqlFilesPattern);
+		await runCodegen(options, graphqlFilesPattern)
 	}
 
 	if (watch) {
-		const watcher = chokidar.watch(graphqlFilesPattern, { ignoreInitial: true });
+		const watcher = chokidar.watch(graphqlFilesPattern, { ignoreInitial: true })
 
 		watcher
 			.on("add", (filePath) => runCodegen(options, filePath))
 			.on("change", (filePath) => runCodegen(options, filePath))
 			.on("unlink", async (filePath) => {
-				const generatedFilePath = filePath.replace(/\.ts$/, ".generated.ts");
+				const generatedFilePath = filePath.replace(/\.ts$/, ".generated.ts")
 
 				if (await fsExists(generatedFilePath)) {
-					await fs.unlink(generatedFilePath);
+					await fs.unlink(generatedFilePath)
 				}
-			});
+			})
 	}
-};
+}

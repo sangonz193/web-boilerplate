@@ -1,7 +1,7 @@
-import { spawn } from "promisify-child-process";
-import { CommandModule } from "yargs";
+import { spawn } from "promisify-child-process"
+import { CommandModule } from "yargs"
 
-import { projectPath } from "../../_utils/projectPath";
+import { projectPath } from "../../_utils/projectPath"
 
 const command: CommandModule<{}, {}> = {
 	command: "dev",
@@ -15,8 +15,8 @@ const command: CommandModule<{}, {}> = {
 				cwd: projectPath,
 			}),
 			spawn("node", ["cli", "generate-files", "-w"]),
-		]);
+		])
 	},
-};
+}
 
-export default command;
+export default command

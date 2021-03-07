@@ -3,7 +3,7 @@
  * next time the file gets generated.
  */
 
-import gql from "graphql-tag";
+import gql from "graphql-tag"
 
 export const remoteSchema = gql`
 	scalar Void
@@ -46,4 +46,4 @@ export const remoteSchema = gql`
 	The \`Upload\` scalar type represents a file upload.
 	"""
 	scalar Upload
-`;
+`

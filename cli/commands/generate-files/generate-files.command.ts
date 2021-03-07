@@ -1,11 +1,11 @@
-import { CommandModule } from "yargs";
+import { CommandModule } from "yargs"
 
-import { generateAssetsTypes } from "./generateAssetsTypes";
-import { generateComponentIndexes } from "./generateComponentIndexes";
-import { generateOperationFiles } from "./generateOperationFiles";
-import { generatePossibleTypes } from "./generatePossibleTypes";
-import { generateRemoteSchema } from "./generateRemoteSchema";
-import { generateRemoteSchemaTypes } from "./generateRemoteSchemaTypes";
+import { generateAssetsTypes } from "./generateAssetsTypes"
+import { generateComponentIndexes } from "./generateComponentIndexes"
+import { generateOperationFiles } from "./generateOperationFiles"
+import { generatePossibleTypes } from "./generatePossibleTypes"
+import { generateRemoteSchema } from "./generateRemoteSchema"
+import { generateRemoteSchemaTypes } from "./generateRemoteSchemaTypes"
 
 const command: CommandModule<{}, { watch: boolean }> = {
 	command: "generate-files",
@@ -21,33 +21,33 @@ const command: CommandModule<{}, { watch: boolean }> = {
 		}),
 
 	handler: async (args) => {
-		const { watch } = args;
+		const { watch } = args
 
-		const remoteSchemaPromise = generateRemoteSchema();
+		const remoteSchemaPromise = generateRemoteSchema()
 		const remoteSchemaTypesPromise = remoteSchemaPromise.then(({ remoteSchemaString }) =>
 			generateRemoteSchemaTypes(remoteSchemaString)
-		);
+		)
 
 		await Promise.all([
 			generateAssetsTypes(watch),
 			remoteSchemaPromise.then(async ({ remoteSchemaString }) => {
-				const remoteSchemaTypesFilePath = await remoteSchemaTypesPromise;
+				const remoteSchemaTypesFilePath = await remoteSchemaTypesPromise
 				await generateOperationFiles({
 					remoteSchema: remoteSchemaString,
 					remoteSchemaTypesFilePath,
 					watch,
-				});
+				})
 			}),
 			remoteSchemaPromise.then(({ updatedFromRemote }) => {
 				if (!updatedFromRemote) {
-					return;
+					return
 				}
 
-				return generatePossibleTypes();
+				return generatePossibleTypes()
 			}),
 			generateComponentIndexes(watch),
-		]);
+		])
 	},
-};
+}
 
-export default command;
+export default command
