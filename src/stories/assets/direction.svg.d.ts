@@ -3,5 +3,5 @@
  * next time the file gets generated.
  */
 
-declare const filePath: string;
-export default filePath;
+declare const filePath: string
+export default filePath
