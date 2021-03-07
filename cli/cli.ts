@@ -3,7 +3,7 @@ import yargs, { CommandModule } from "yargs"
 
 import { getSubCommands } from "./_utils/getSubCommands"
 
-const run  =(async () => {
+const run = async () => {
 	const commandsDirPath = path.resolve(__dirname, "commands")
 	const commands: Array<CommandModule<unknown, unknown>> =
 		process.argv[2] === "generate-files"
@@ -15,6 +15,6 @@ const run  =(async () => {
 	commands.forEach((command) => _yargs.command(command))
 
 	_yargs.locale("en_US").parserConfiguration({ "camel-case-expansion": false }).showHelpOnFail(false).strict().argv
-})
+}
 
 run()
