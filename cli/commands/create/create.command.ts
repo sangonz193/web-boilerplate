@@ -1,8 +1,8 @@
-import path from "path";
-import { CommandModule } from "yargs";
+import path from "path"
+import { CommandModule } from "yargs"
 
-import { getSubCommandsSync } from "../../_utils/getSubCommands";
-import { runPlopInterface } from "./plop/runPlopInterface";
+import { getSubCommandsSync } from "../../_utils/getSubCommands"
+import { runPlopInterface } from "./plop/runPlopInterface"
 
 const command: CommandModule<{}, {}> = {
 	command: "create",
@@ -10,15 +10,15 @@ const command: CommandModule<{}, {}> = {
 	describe: "Commands to create different types of common code files, like components.",
 
 	builder: (yargs) => {
-		const commandsFolderPath = path.resolve(__dirname, "commands");
-		getSubCommandsSync(commandsFolderPath).forEach((command) => yargs.command(command));
+		const commandsFolderPath = path.resolve(__dirname, "commands")
+		getSubCommandsSync(commandsFolderPath).forEach((command) => yargs.command(command))
 
-		return yargs;
+		return yargs
 	},
 
 	handler: () => {
-		runPlopInterface();
+		runPlopInterface()
 	},
-};
+}
 
-export default command;
+export default command

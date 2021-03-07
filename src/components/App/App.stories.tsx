@@ -1,8 +1,8 @@
-import { App } from "./App";
-import { AppProps } from "./App.types";
+import { App } from "./App"
+import { AppProps } from "./App.types"
 
 export const AppExample = () => {
-	const props: AppProps = {};
+	const props: AppProps = {}
 
-	return <App {...props}>Hello World!</App>;
-};
+	return <App {...props}>Hello World!</App>
+}

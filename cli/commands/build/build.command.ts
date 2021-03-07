@@ -1,7 +1,7 @@
-import { spawn } from "promisify-child-process";
-import { CommandModule } from "yargs";
+import { spawn } from "promisify-child-process"
+import { CommandModule } from "yargs"
 
-import { projectPath } from "../../_utils/projectPath";
+import { projectPath } from "../../_utils/projectPath"
 
 const command: CommandModule<{}, {}> = {
 	command: "build",
@@ -12,8 +12,8 @@ const command: CommandModule<{}, {}> = {
 		await spawn("npx", ["react-scripts", "build"], {
 			stdio: "inherit",
 			cwd: projectPath,
-		});
+		})
 	},
-};
+}
 
-export default command;
+export default command
