@@ -73,6 +73,10 @@ const getConfig: GetPlopGeneratorConfig = (plop) => ({
 						path.resolve(destination, "_", "_"),
 						path.resolve(projectPath, "src", "_utils", "PropsToState.ts")
 					),
+					getSlotsWithPropsImportPath: getImportPath(
+						path.resolve(destination, "_", "_"),
+						path.resolve(projectPath, "src", "_utils", "getSlotsWithProps.tsx")
+					),
 				},
 				destination,
 				templateFiles: [handlebarsFilePathPattern],

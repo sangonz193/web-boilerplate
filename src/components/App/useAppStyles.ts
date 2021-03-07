@@ -5,8 +5,8 @@ import { AppState } from "./App.types"
 const useRootStyles = makeStyles<AppState>([
 	[
 		null,
-		(theme) => ({
-			backgroundColor: theme.global.color.hyperlink,
+		() => ({
+			// TODO: Add default styles
 		}),
 	],
 ])

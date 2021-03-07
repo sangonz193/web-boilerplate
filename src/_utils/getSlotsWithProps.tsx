@@ -1,11 +1,11 @@
 import { getSlots } from "@fluentui/react-utilities"
 import React from "react"
 
-export const getSlotsWithProps = (
-	state: Record<string, any>,
-	slotNames?: string[] | undefined
-): Record<string, any> => {
-	const { slots, slotProps } = getSlots(state, slotNames)
+export const getSlotsWithProps = <T extends Record<string, any>, TKey extends keyof T>(
+	state: T,
+	slotNames: TKey[]
+): Record<TKey | "root", React.FC> => {
+	const { slots, slotProps } = getSlots(state, slotNames as any)
 
 	const slotPropsRef = React.useRef(slotProps)
 	slotPropsRef.current = slotProps
@@ -26,5 +26,5 @@ export const getSlotsWithProps = (
 		}
 	})
 
-	return slotsWithPropsRef.current
+	return slotsWithPropsRef.current as any
 }
