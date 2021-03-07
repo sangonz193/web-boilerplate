@@ -15,19 +15,23 @@ export const generateRemoteSchema = async () => {
 	const remoteSchemaFilePath = path.resolve(projectPath, "src", "graphql", "remoteSchema.graphql.ts");
 	const { BACKEND_URL } = await yup
 		.object({
-			BACKEND_URL: yup.string().required(),
+			BACKEND_URL: yup.string().notRequired(),
 		})
 		.required()
 		.validate(process.env);
 
 	let writeToLocalFile = true;
-	let remoteSchema: GraphQLSchema | null = await loadSchema(`${BACKEND_URL}/graphql`, {
-		loaders: [new UrlLoader()],
-	}).catch(() => {
-		writeToLocalFile = false;
-		console.log(chalk.yellow("Could not load remote schema. Using local file."));
-		return null;
-	});
+	let remoteSchema: GraphQLSchema | null = null;
+
+	if (BACKEND_URL) {
+		remoteSchema = await loadSchema(`${BACKEND_URL}/graphql`, {
+			loaders: [new UrlLoader()],
+		}).catch(() => {
+			writeToLocalFile = false;
+			console.log(chalk.yellow("Could not load remote schema. Using local file."));
+			return null;
+		});
+	}
 
 	if (remoteSchema === null) {
 		remoteSchema = await loadSchema(remoteSchemaFilePath, { loaders: [new CodeFileLoader()] });
