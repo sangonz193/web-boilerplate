@@ -10,14 +10,14 @@ import { projectPath } from "../../_utils/projectPath";
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent";
 
 export const generatePossibleTypes = async () => {
-	const { API_CLIENT_URI } = await yup
+	const { BACKEND_URL } = await yup
 		.object({
-			API_CLIENT_URI: yup.string().required(),
+			BACKEND_URL: yup.string().required(),
 		})
 		.required()
 		.validate(process.env);
 
-	const fragmentsResponse = await axios(API_CLIENT_URI, {
+	const fragmentsResponse = await axios(`${BACKEND_URL}/graphql`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		data: {

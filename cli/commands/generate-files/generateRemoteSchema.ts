@@ -13,21 +13,28 @@ import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"
 
 export const generateRemoteSchema = async () => {
 	const remoteSchemaFilePath = path.resolve(projectPath, "src", "graphql", "remoteSchema.graphql.ts");
-	const { API_CLIENT_URI } = await yup
+	const { BACKEND_URL } = await yup
 		.object({
-			API_CLIENT_URI: yup.string().required(),
+			BACKEND_URL: yup.string().notRequired(),
 		})
 		.required()
 		.validate(process.env);
 
-	let writeToLocalFile = true;
-	let remoteSchema: GraphQLSchema | null = await loadSchema(API_CLIENT_URI, { loaders: [new UrlLoader()] }).catch(
-		() => {
-			writeToLocalFile = false;
+	let writeToLocalFile = false;
+	let remoteSchema: GraphQLSchema | null = null;
+
+	if (BACKEND_URL) {
+		remoteSchema = await loadSchema(`${BACKEND_URL}/graphql`, {
+			loaders: [new UrlLoader()],
+		}).catch(() => {
 			console.log(chalk.yellow("Could not load remote schema. Using local file."));
 			return null;
+		});
+
+		if (remoteSchema) {
+			writeToLocalFile = true;
 		}
-	);
+	}
 
 	if (remoteSchema === null) {
 		remoteSchema = await loadSchema(remoteSchemaFilePath, { loaders: [new CodeFileLoader()] });

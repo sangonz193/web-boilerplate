@@ -1,0 +1,33 @@
+diff --git a/node_modules/plop/src/plop.d.ts b/node_modules/plop/src/plop.d.ts
+index 452d7c7..980e5dc 100644
+--- a/node_modules/plop/src/plop.d.ts
++++ b/node_modules/plop/src/plop.d.ts
+@@ -15,5 +15,5 @@ export {
+ } from 'node-plop';
+ 
+ export const Plop: Liftoff;
+-export const run: (env: Liftoff.LiftoffEnv, _: any, passArgsBeforeDashes: boolean) => void;
++export const run: (env: Liftoff.LiftoffEnv, _: any, passArgsBeforeDashes: boolean, generatorName = "", bypassArgs: string[] = []) => void;
+ export const progressSpinner: ora.Ora;
+diff --git a/node_modules/plop/src/plop.js b/node_modules/plop/src/plop.js
+index eb8d436..68baf9f 100755
+--- a/node_modules/plop/src/plop.js
++++ b/node_modules/plop/src/plop.js
+@@ -36,7 +36,7 @@ const progressSpinner = ora();
+  * One of the reasons we default generator arguments as anything past `--` is a few reasons:
+  * Primarily that there may be name-spacing issues when combining the arg order and named arg passing
+  */
+-function run(env, _, passArgsBeforeDashes) {
++function run(env, _, passArgsBeforeDashes, generatorName = "", bypassArr = []) {
+ 	const plopfilePath = env.configPath;
+ 
+ 	// handle basic argument flags like --help, --version, etc
+@@ -51,7 +51,7 @@ function run(env, _, passArgsBeforeDashes) {
+ 
+ 	const generators = plop.getGeneratorList();
+ 	const generatorNames = generators.map(v => v.name);
+-	const {generatorName, bypassArr, plopArgV} = getBypassAndGenerator(plop, passArgsBeforeDashes);
++	let {plopArgV} = getBypassAndGenerator(plop, passArgsBeforeDashes);
+ 
+ 	// look up a generator and run it with calculated bypass data
+ 	const runGeneratorByName = name => {

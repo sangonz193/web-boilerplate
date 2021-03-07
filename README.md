@@ -20,7 +20,7 @@
 
 ### Running the app in development mode
 
-Run the command `npm run dev` (or `node cli dev`) to run the dev server. Depending on the value of the `PORT` environment variable in the `.env` file, the app will be available at _http<span></span>://localhost:$PORT`_.
+Run the command `npm run dev` (or `node cli dev`) to run the dev server. Depending on the value of the `PORT` environment variable in the `.env` file, the app will be available at _http<span></span>://localhost:$PORT_.
 
 ## Included command line utility
 

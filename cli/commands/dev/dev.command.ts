@@ -1,6 +1,8 @@
 import { spawn } from "promisify-child-process";
 import { CommandModule } from "yargs";
 
+import { projectPath } from "../../_utils/projectPath";
+
 const command: CommandModule<{}, {}> = {
 	command: "dev",
 
@@ -10,6 +12,7 @@ const command: CommandModule<{}, {}> = {
 		await Promise.all([
 			spawn("npx", ["react-scripts", "start"], {
 				stdio: "inherit",
+				cwd: projectPath,
 			}),
 			spawn("node", ["cli", "generate-files", "-w"]),
 		]);
