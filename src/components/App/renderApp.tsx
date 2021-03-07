@@ -5,13 +5,11 @@ import { appShorthandProps } from "./useApp";
 export const renderApp = (state: AppState) => {
 	const slots = getSlotsWithProps(state, appShorthandProps);
 
-	console.log(slots);
-
 	return (
 		<slots.root>
 			<slots.header>
 				<slots.headerContent>
-					{/* <slots.headerContentCode {...slotProps.headerContentCode} /> */}
+					<slots.headerContentCode {...slotProps.headerContentCode} />
 				</slots.headerContent>
 			</slots.header>
 
