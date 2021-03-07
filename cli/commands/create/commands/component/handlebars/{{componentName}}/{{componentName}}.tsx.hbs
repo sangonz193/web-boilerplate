@@ -1,16 +1,17 @@
-import React from 'react';
-import { {{componentName}}Props } from './{{componentName}}.types';
-import { render{{componentName}} } from './render{{componentName}}';
-import { use{{componentName}} } from './use{{componentName}}';
-import { use{{componentName}}Styles } from './use{{componentName}}Styles';
+import React from 'react'
 
-export const {{componentName}} = React.memo(
-  React.forwardRef<HTMLElement, {{componentName}}Props>((props, ref) => {
-    const state = use{{componentName}}(props, ref);
+import { {{componentName}}Props } from './{{componentName}}.types'
+import { render{{componentName}} } from './render{{componentName}}'
+import { use{{componentName}} } from './use{{componentName}}'
+import { use{{componentName}}Styles } from './use{{componentName}}Styles'
 
-    use{{componentName}}Styles(state);
-    return render{{componentName}}(state);
-  })
-);
+const {{componentName}}Component: React.ForwardRefRenderFunction<HTMLElement, {{componentName}}Props> = (props, ref) => {
+  const state = use{{componentName}}(props, ref)
 
-{{componentName}}.displayName = '{{componentName}}';
+  use{{componentName}}Styles(state)
+  return render{{componentName}}(state)
+}
+
+export const {{componentName}} = React.memo(React.forwardRef({{componentName}}Component))
+
+{{componentName}}.displayName = '{{componentName}}'

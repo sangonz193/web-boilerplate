@@ -1,12 +1,12 @@
-import { getSlots } from '@fluentui/react-utilities';
+import { getSlotsWithProps } from "{{getSlotsWithPropsImportPath}}"
 import { {{componentName}}State } from './{{componentName}}.types';
 import { {{camelCase componentName}}ShorthandProps } from './use{{componentName}}';
 
 export const render{{componentName}} = (state: {{componentName}}State) => {
-  const { slots, slotProps } = getSlots(state, {{camelCase componentName}}ShorthandProps);
+  const slots = getSlotsWithProps(state, {{camelCase componentName}}ShorthandProps);
 
   return (
-    <slots.root {...slotProps.root}>
+    <slots.root>
       {state.children}
     </slots.root>
   );
