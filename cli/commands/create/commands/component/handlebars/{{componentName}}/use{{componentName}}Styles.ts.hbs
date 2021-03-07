@@ -1,0 +1,17 @@
+import { makeStyles, ax } from '@fluentui/react-make-styles';
+import { {{componentName}}State } from './{{componentName}}.types';
+
+const useRootStyles = makeStyles<{{componentName}}State>([
+  [
+    null,
+    theme => ({
+      // TODO: Add default styles
+    }),
+  ]
+]);
+
+export const use{{componentName}}Styles = (state: {{componentName}}State): {{componentName}}State => {
+  state.className = ax(useRootStyles(state), state.className);
+
+  return state;
+};

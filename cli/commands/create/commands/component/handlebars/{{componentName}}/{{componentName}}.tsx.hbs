@@ -1,0 +1,16 @@
+import React from 'react';
+import { {{componentName}}Props } from './{{componentName}}.types';
+import { render{{componentName}} } from './render{{componentName}}';
+import { use{{componentName}} } from './use{{componentName}}';
+import { use{{componentName}}Styles } from './use{{componentName}}Styles';
+
+export const {{componentName}} = React.memo(
+  React.forwardRef<HTMLElement, {{componentName}}Props>((props, ref) => {
+    const state = use{{componentName}}(props, ref);
+
+    use{{componentName}}Styles(state);
+    return render{{componentName}}(state);
+  })
+);
+
+{{componentName}}.displayName = '{{componentName}}';
