@@ -2,9 +2,12 @@ import { IFocusZoneProps } from "@fluentui/react-focus"
 import React from "react"
 
 import { SlotsProp } from "../_utils/SlotsProp"
+import { NavbarButtonProps } from "../NavbarButton"
 
 export type NavbarSlots = {
-	focusTrap: IFocusZoneProps
+	focusZone: IFocusZoneProps
+	home: NavbarButtonProps
+	settings: NavbarButtonProps
 }
 
 export type NavbarProps = {
@@ -19,5 +22,7 @@ export type NavbarState = {
 }
 
 export type NavbarStyles = {
-	focusTrap: string
+	focusZone: string
+	home: string
+	settings: string
 }

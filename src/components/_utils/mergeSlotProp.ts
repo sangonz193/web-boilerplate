@@ -36,7 +36,9 @@ export const mergeSlotProp = <TSlotProps>(...slotProps: Array<SlotProp<TSlotProp
 				}
 				case "render": {
 					return (props, defaultRenderer) => {
-						return result(props, (props) => slotProp.render(props, defaultRenderer))
+						return result(props, (props) => {
+							return slotProp.render(props, defaultRenderer)
+						})
 					}
 				}
 			}

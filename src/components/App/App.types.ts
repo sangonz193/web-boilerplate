@@ -1,5 +1,6 @@
 import React from "react"
 
+import { RouteConfig } from "../../routes/_utils/RouteConfig"
 import { SlotsProp } from "../_utils/SlotsProp"
 import { LayoutProps } from "../Layout"
 
@@ -14,7 +15,8 @@ export type AppProps = {
 
 export type AppState = {
 	slotProp: SlotsProp<AppSlots>
-	children: React.ReactNode
+	routeConfig: RouteConfig<any> | undefined
+	routeParams: object | undefined
 }
 
 export type AppStyles = {

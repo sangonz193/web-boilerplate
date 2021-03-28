@@ -34,6 +34,7 @@ export function useLayoutSlots(state: LayoutState, styles: LayoutStyles): Slots<
 			component: "div",
 			props: {
 				className: styles.componentContainer,
+				children: state.children,
 			},
 		},
 

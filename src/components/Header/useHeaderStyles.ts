@@ -1,8 +1,8 @@
-import { IStyle, makeStyles } from "@fluentui/react"
+import { makeStyles } from "@fluentui/react"
 
 import { HeaderState, HeaderStyles } from "./Header.types"
 
-const useStyles = makeStyles<{ [K in keyof HeaderStyles]: IStyle }>((theme) => {
+const useStyles = makeStyles((theme) => {
 	return {
 		wrapper: {
 			display: "flex",

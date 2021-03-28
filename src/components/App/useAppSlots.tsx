@@ -7,7 +7,9 @@ export function useAppSlots(state: AppState): Slots<AppSlots> {
 	return useSlotsProp<AppSlots>(state.slotProp, {
 		wrapper: {
 			component: Layout,
-			props: {},
+			props: {
+				children: state.routeConfig?.element(state.routeParams),
+			},
 		},
 	})
 }

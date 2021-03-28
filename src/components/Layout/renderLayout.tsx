@@ -8,7 +8,7 @@ export function renderLayout(state: LayoutState, slots: Slots<LayoutSlots>) {
 			<slots.wrapper>
 				<slots.contentAndHeaderContainer>
 					<slots.header />
-					<slots.componentContainer>{state.children}</slots.componentContainer>
+					<slots.componentContainer />
 				</slots.contentAndHeaderContainer>
 
 				<slots.navbar />
