@@ -1,10 +1,13 @@
 import { Slots } from "../_utils/Slots"
+import { useContentSlot } from "../_utils/useContentSlot"
 import { useSlotsProp } from "../_utils/useSlotsProp"
-import { Header } from "../Header"
+import { Header, HeaderSlots } from "../Header"
 import { Navbar } from "../Navbar"
 import { LayoutSlots, LayoutState, LayoutStyles } from "./Layout.types"
 
 export function useLayoutSlots(state: LayoutState, styles: LayoutStyles): Slots<LayoutSlots> {
+	const layoutTitleSlot = useContentSlot<HeaderSlots["title"]>("Layout title")
+
 	return useSlotsProp<LayoutSlots>(state.slotProp, {
 		wrapper: {
 			component: "div",
@@ -17,10 +20,7 @@ export function useLayoutSlots(state: LayoutState, styles: LayoutStyles): Slots<
 			component: Header,
 			props: {
 				slots: {
-					title: {
-						type: "content",
-						content: "Layout title",
-					},
+					title: layoutTitleSlot,
 				},
 			},
 		},
