@@ -1,18 +1,19 @@
-import { ax, makeStyles } from "@fluentui/react-make-styles"
+import { makeStyles } from "@fluentui/react"
 
-import { AppState } from "./App.types"
+import { AppState, AppStyles } from "./App.types"
 
-const useRootStyles = makeStyles<AppState>([
-	[
-		null,
-		() => ({
-			// TODO: Add default styles
-		}),
-	],
-])
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const useStyles = makeStyles((theme) => {
+	return {
+		wrapper: {},
+	}
+})
 
-export const useAppStyles = (state: AppState): AppState => {
-	state.className = ax(useRootStyles(state), state.className)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function useAppStyles(state: AppState): AppStyles {
+	const styles = useStyles()
 
-	return state
+	return {
+		wrapper: styles.wrapper,
+	}
 }

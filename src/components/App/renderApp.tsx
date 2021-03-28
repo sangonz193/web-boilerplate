@@ -1,19 +1,6 @@
-import { getSlotsWithProps } from "../../_utils/getSlotsWithProps"
-import { AppState } from "./App.types"
-import { appShorthandProps } from "./useApp"
+import { Slots } from "../_utils/Slots"
+import { AppSlots, AppState } from "./App.types"
 
-export const renderApp = (state: AppState) => {
-	const slots = getSlotsWithProps(state, appShorthandProps)
-
-	return (
-		<slots.root>
-			<slots.header>
-				<slots.headerContent>
-					<slots.headerContentCode />
-				</slots.headerContent>
-			</slots.header>
-
-			<slots.learnReact />
-		</slots.root>
-	)
+export function renderApp(state: AppState, slots: Slots<AppSlots>) {
+	return <slots.wrapper />
 }

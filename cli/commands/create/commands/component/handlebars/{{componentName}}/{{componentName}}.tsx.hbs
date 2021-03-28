@@ -1,17 +1,24 @@
-import React from 'react'
+import { createComponent } from "{{createComponentImportPath}}"
+import {
+    {{componentName}}Props,
+    {{componentName}}State,
+    {{componentName}}Slots,
+    {{componentName}}Styles
+} from "./{{componentName}}.types"
+import { render{{componentName}} } from "./render{{componentName}}"
+import { use{{componentName}}Slots } from "./use{{componentName}}Slots"
+import { use{{componentName}}State } from "./use{{componentName}}State"
+import { use{{componentName}}Styles } from "./use{{componentName}}Styles"
 
-import { {{componentName}}Props } from './{{componentName}}.types'
-import { render{{componentName}} } from './render{{componentName}}'
-import { use{{componentName}} } from './use{{componentName}}'
-import { use{{componentName}}Styles } from './use{{componentName}}Styles'
-
-const {{componentName}}Component: React.ForwardRefRenderFunction<HTMLElement, {{componentName}}Props> = (props, ref) => {
-  const state = use{{componentName}}(props, ref)
-
-  use{{componentName}}Styles(state)
-  return render{{componentName}}(state)
-}
-
-export const {{componentName}} = React.memo(React.forwardRef({{componentName}}Component))
-
-{{componentName}}.displayName = '{{componentName}}'
+export const {{componentName}} = createComponent<
+    {{componentName}}Props,
+    {{componentName}}State,
+    {{componentName}}Slots,
+    {{componentName}}Styles
+>({
+    name: "{{componentName}}",
+    useState: use{{componentName}}State,
+    useStyles: use{{componentName}}Styles,
+    useSlots: use{{componentName}}Slots,
+    render: render{{componentName}},
+})
