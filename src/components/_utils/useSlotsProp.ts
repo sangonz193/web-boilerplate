@@ -34,7 +34,13 @@ export const useSlotsProp = <TSlots>(
 							...props,
 						},
 						(props) => {
-							return React.createElement(Component, props, (props as any).children)
+							let children = (props as any).children
+
+							if (children === undefined) {
+								children = (defaultProps as any).children
+							}
+
+							return React.createElement(Component, props, children)
 						}
 					)
 
