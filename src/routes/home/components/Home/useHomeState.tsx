@@ -1,31 +1,28 @@
 import React from "react"
 
+import { useComponentSlots } from "../../../../components/_utils/useComponentSlots"
 import { useContentSlot } from "../../../../components/_utils/useContentSlot"
 import { usePartialPropsSlot } from "../../../../components/_utils/usePartialPropsSlot"
 import { HeaderProps, HeaderSlots } from "../../../../components/Header"
+import { LayoutSlots } from "../../../../components/Layout"
 import { useLayoutOptions } from "../../../../components/Layout/useLayoutOptions"
 import { HomeProps, HomeState } from "./Home.types"
 
 export function useHomeState(props: HomeProps): HomeState {
-	const headerTitleSlot = useContentSlot<HeaderSlots["title"]>("Home")
-	const headerSlots = usePartialPropsSlot<HeaderProps>(
-		React.useMemo(() => {
-			return {
-				slots: {
-					title: headerTitleSlot,
-				},
-			}
-		}, [headerTitleSlot])
-	)
+	const layoutSlots = useComponentSlots<LayoutSlots>({
+		header: usePartialPropsSlot<HeaderProps>({
+			slots: useComponentSlots<HeaderSlots>({
+				title: useContentSlot<HeaderSlots["title"]>("Header"),
+			}),
+		}),
+	})
 
 	useLayoutOptions(
 		React.useCallback(
 			() => ({
-				slots: {
-					header: headerSlots,
-				},
+				slots: layoutSlots,
 			}),
-			[headerSlots]
+			[layoutSlots]
 		)
 	)
 

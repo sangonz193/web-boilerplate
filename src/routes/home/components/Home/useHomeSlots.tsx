@@ -8,7 +8,7 @@ export function useHomeSlots(state: HomeState, styles: HomeStyles): Slots<HomeSl
 			component: "div",
 			props: {
 				className: styles.wrapper,
-				children: "This is the home screen",
+				children: "This is the home screen.",
 			},
 		},
 	})
