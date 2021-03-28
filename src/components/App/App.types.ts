@@ -1,19 +1,22 @@
-import { ComponentProps, ShorthandProps } from "@fluentui/react-utilities"
 import React from "react"
 
-import { PropsToState } from "../../_utils/PropsToState"
+import { SlotsProp } from "../_utils/SlotsProp"
+import { LayoutProps } from "../Layout"
 
-export type AppShorthandProps = {
-	learnReact?: ShorthandProps<React.HTMLAttributes<HTMLSpanElement>>
-	header?: ShorthandProps<React.HTMLAttributes<HTMLSpanElement>>
-	headerContent?: ShorthandProps<React.HTMLAttributes<HTMLSpanElement>>
-	headerContentCode?: ShorthandProps<React.HTMLAttributes<HTMLSpanElement>>
+export type AppSlots = {
+	wrapper: LayoutProps
 }
 
-export type AppProps = ComponentProps & React.HTMLAttributes<HTMLElement> & AppShorthandProps
-
-export type AppDefaults = Required<Pick<AppProps, "as" | keyof AppShorthandProps>> & {
-	ref: React.Ref<HTMLElement>
+export type AppProps = {
+	children?: React.ReactNode
+	slots?: SlotsProp<AppSlots>
 }
 
-export type AppState = PropsToState<AppProps & AppDefaults, keyof AppShorthandProps>
+export type AppState = {
+	slotProp: SlotsProp<AppSlots>
+	children: React.ReactNode
+}
+
+export type AppStyles = {
+	wrapper: string
+}

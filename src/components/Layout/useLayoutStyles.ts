@@ -1,16 +1,18 @@
 import { IStyle, makeStyles } from "@fluentui/react"
 
-import { AppState, AppStyles } from "./App.types"
+import { LayoutState, LayoutStyles } from "./Layout.types"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const useStyles = makeStyles<{ [K in keyof AppStyles]: IStyle }>((theme) => {
+const useStyles = makeStyles<{ [K in keyof LayoutStyles]: IStyle }>((theme) => {
 	return {
-		wrapper: {},
+		wrapper: {
+			height: "100%",
+		},
 	}
 })
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function useAppStyles(state: AppState): AppStyles {
+export function useLayoutStyles(state: LayoutState): LayoutStyles {
 	const styles = useStyles()
 
 	return {

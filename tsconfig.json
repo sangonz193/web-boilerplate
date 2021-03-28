@@ -36,5 +36,10 @@
     "build",
     "node_modules"
   ],
-  "include": ["**/*.js", ".*.js", "**/*.ts", "**/*.tsx"]
+  "include": [
+    "**/*.js",
+    ".*.js",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

@@ -1,13 +1,10 @@
-import { getSlotsWithProps } from "{{getSlotsWithPropsImportPath}}"
-import { {{componentName}}State } from './{{componentName}}.types';
-import { {{camelCase componentName}}ShorthandProps } from './use{{componentName}}';
+import { Slots } from "{{slotsImportPath}}"
+import { {{componentName}}Slots, {{componentName}}State } from "./{{componentName}}.types"
 
-export const render{{componentName}} = (state: {{componentName}}State) => {
-  const slots = getSlotsWithProps(state, {{camelCase componentName}}ShorthandProps);
-
-  return (
-    <slots.root>
-      {state.children}
-    </slots.root>
-  );
-};
+export function render{{componentName}}(state: {{componentName}}State, slots: Slots<{{componentName}}Slots>) {
+	return (
+		<slots.wrapper>
+			{state.children}
+		</slots.wrapper>
+	)
+}

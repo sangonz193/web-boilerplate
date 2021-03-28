@@ -14,9 +14,21 @@ export type Scalars = {
 	Boolean: boolean
 	Int: number
 	Float: number
-	Void: any
 	/** The `Upload` scalar type represents a file upload. */
 	Upload: any
+	Void: any
+}
+
+export type AuthenticationError = {
+	__typename: "AuthenticationError"
+	_?: Maybe<Scalars["Void"]>
+}
+
+export type CacheControlScope = "PUBLIC" | "PRIVATE"
+
+export type GenericError = {
+	__typename: "GenericError"
+	_?: Maybe<Scalars["Void"]>
 }
 
 export type Mutation = {
@@ -24,18 +36,8 @@ export type Mutation = {
 	_?: Maybe<Scalars["Void"]>
 }
 
-export type GenericError = {
-	__typename: "GenericError"
-	_?: Maybe<Scalars["Void"]>
-}
-
 export type NotFoundError = {
 	__typename: "NotFoundError"
-	_?: Maybe<Scalars["Void"]>
-}
-
-export type AuthenticationError = {
-	__typename: "AuthenticationError"
 	_?: Maybe<Scalars["Void"]>
 }
 
@@ -53,5 +55,3 @@ export type User = {
 	updatedAt?: Maybe<Scalars["String"]>
 	deletedAt?: Maybe<Scalars["String"]>
 }
-
-export type CacheControlScope = "PUBLIC" | "PRIVATE"

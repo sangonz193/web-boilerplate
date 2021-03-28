@@ -65,17 +65,25 @@ const getConfig: GetPlopGeneratorConfig = (plop) => ({
 				type: "addMany",
 				data: {
 					componentName: answers.name,
-					dangerousKeysOfImportPath: getImportPath(
+
+					createComponentImportPath: getImportPath(
 						path.resolve(destination, "_", "_"),
-						path.resolve(projectPath, "src", "_utils", "dangerousKeysOf.ts")
+						path.resolve(projectPath, "src", "components", "_utils", "createComponent.ts")
 					),
-					propsToStateImportPath: getImportPath(
+
+					slotsPropImportPath: getImportPath(
 						path.resolve(destination, "_", "_"),
-						path.resolve(projectPath, "src", "_utils", "PropsToState.ts")
+						path.resolve(projectPath, "src", "components", "_utils", "SlotsProp.ts")
 					),
-					getSlotsWithPropsImportPath: getImportPath(
+
+					slotsImportPath: getImportPath(
 						path.resolve(destination, "_", "_"),
-						path.resolve(projectPath, "src", "_utils", "getSlotsWithProps.tsx")
+						path.resolve(projectPath, "src", "components", "_utils", "Slots.ts")
+					),
+
+					useSlotsPropImportPath: getImportPath(
+						path.resolve(destination, "_", "_"),
+						path.resolve(projectPath, "src", "components", "_utils", "useSlotsProp.ts")
 					),
 				},
 				destination,

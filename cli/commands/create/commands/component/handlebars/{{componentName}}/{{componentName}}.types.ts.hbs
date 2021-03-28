@@ -1,17 +1,21 @@
-import { ComponentProps, ShorthandProps } from '@fluentui/react-utilities';
-import React from 'react';
+import React from "react"
 
-import { PropsToState } from "{{propsToStateImportPath}}";
+import { SlotsProp } from "{{slotsPropImportPath}}"
 
-export type {{componentName}}ShorthandProps = {
-  // TODO: either rename or delete this shorthand prop.
-	_?: ShorthandProps<React.HTMLAttributes<HTMLSpanElement>>;
+export type {{componentName}}Slots = {
+	wrapper: React.HTMLAttributes<HTMLDivElement>
 };
 
-export type {{componentName}}Props = ComponentProps & React.HTMLAttributes<HTMLElement> & {{componentName}}ShorthandProps
+export type {{componentName}}Props = {
+	children?: React.ReactNode
+	slots?: SlotsProp<{{componentName}}Slots>
+}
 
-export type {{componentName}}Defaults = Required<Pick<{{componentName}}Props, "as" | keyof {{componentName}}ShorthandProps>> & {
-	ref: React.Ref<HTMLElement>;
-};
+export type {{componentName}}State = {
+	slotProp: SlotsProp<{{componentName}}Slots>
+	children: React.ReactNode
+}
 
-export type {{componentName}}State = PropsToState<{{componentName}}Props & {{componentName}}Defaults, keyof {{componentName}}ShorthandProps>;
+export type {{componentName}}Styles = {
+	wrapper: string
+}

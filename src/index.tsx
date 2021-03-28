@@ -1,16 +1,17 @@
 import "./index.css"
 
-import { webDarkTheme } from "@fluentui/react-theme"
-import { ThemeProvider } from "@fluentui/react-theme-provider"
+import { ThemeProvider } from "@fluentui/react"
 import React from "react"
 import ReactDOM from "react-dom"
 
 import { App } from "./components/App"
 import reportWebVitals from "./reportWebVitals"
 
+const themeProviderStyle = { height: "100%" }
+
 ReactDOM.render(
 	<React.StrictMode>
-		<ThemeProvider theme={webDarkTheme}>
+		<ThemeProvider style={themeProviderStyle}>
 			<App />
 		</ThemeProvider>
 	</React.StrictMode>,
