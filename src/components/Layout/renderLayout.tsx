@@ -6,8 +6,11 @@ export function renderLayout(state: LayoutState, slots: Slots<LayoutSlots>) {
 	return (
 		<LayoutContext.Provider value={state.contextValue}>
 			<slots.wrapper>
-				<slots.header />
-				{state.children}
+				<slots.contentAndHeaderContainer>
+					<slots.header />
+					<slots.componentContainer>{state.children}</slots.componentContainer>
+				</slots.contentAndHeaderContainer>
+
 				<slots.navbar />
 			</slots.wrapper>
 		</LayoutContext.Provider>

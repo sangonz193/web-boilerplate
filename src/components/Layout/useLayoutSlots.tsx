@@ -29,5 +29,19 @@ export function useLayoutSlots(state: LayoutState, styles: LayoutStyles): Slots<
 			component: Navbar,
 			props: {},
 		},
+
+		componentContainer: {
+			component: "div",
+			props: {
+				className: styles.componentContainer,
+			},
+		},
+
+		contentAndHeaderContainer: {
+			component: "div",
+			props: {
+				className: styles.contentAndHeaderContainer,
+			},
+		},
 	})
 }

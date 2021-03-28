@@ -17,6 +17,7 @@ export const useSlotsProp = <TSlots>(
 ): Slots<TSlots> => {
 	const slotKeys = useRefWithInitializer(() => dangerousKeysOf(defaults)).current
 	const paramsRef = React.useRef([slotsProp, defaults] as const)
+	paramsRef.current = [slotsProp, defaults]
 
 	return useRefWithInitializer(
 		() =>

@@ -10,6 +10,8 @@ const layoutSlotKeys = dangerousKeysOf(
 		wrapper: 0,
 		header: 0,
 		navbar: 0,
+		componentContainer: 0,
+		contentAndHeaderContainer: 0,
 	})
 )
 

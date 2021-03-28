@@ -7,6 +7,8 @@ import { NavbarProps } from "../Navbar"
 export type LayoutSlots = {
 	wrapper: React.HTMLAttributes<HTMLDivElement>
 	header: HeaderProps
+	contentAndHeaderContainer: React.HTMLAttributes<HTMLDivElement>
+	componentContainer: React.HTMLAttributes<HTMLDivElement>
 	navbar: NavbarProps
 }
 
@@ -31,4 +33,6 @@ export type LayoutState = {
 
 export type LayoutStyles = {
 	wrapper: string
+	contentAndHeaderContainer: string
+	componentContainer: string
 }

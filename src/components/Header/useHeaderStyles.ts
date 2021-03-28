@@ -2,12 +2,33 @@ import { IStyle, makeStyles } from "@fluentui/react"
 
 import { HeaderState, HeaderStyles } from "./Header.types"
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles<{ [K in keyof HeaderStyles]: IStyle }>((theme) => {
 	return {
-		wrapper: {},
+		wrapper: {
+			display: "flex",
+			height: 50,
+			flexShrink: 0,
 
-		title: {},
+			borderBottom: `1px solid ${theme.semanticColors.bodyDivider}`,
+			backgroundColor: theme.palette.neutralLighterAlt,
+
+			zIndex: 1,
+		},
+
+		title: [
+			theme.fonts.xLarge,
+			{
+				marginRight: "auto",
+				alignSelf: "center",
+				padding: "0 20px",
+				whiteSpace: "nowrap",
+				display: "block",
+				overflow: "hidden",
+				textOverflow: "ellipsis",
+
+				color: theme.semanticColors.bodyText,
+			},
+		],
 
 		right: {},
 	}
