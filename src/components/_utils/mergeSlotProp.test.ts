@@ -1,7 +1,7 @@
 import { mergeSlotProp } from "./mergeSlotProp"
 
-describe("mergeSlotProp", () => {
-	it("given 1 render type slot, gives correct output", () => {
+describe("given 1 render type slot", () => {
+	test("when it renders", () => {
 		type Props = {
 			foo: string
 			bar: number
@@ -23,8 +23,10 @@ describe("mergeSlotProp", () => {
 
 		expect(slotRender).toBe(renderResult({ foo: "foo", bar: 1 }))
 	})
+})
 
-	it("given 1 render type slot and 1 props type slot, gives correct output", () => {
+describe("given 1 render type slot and 1 props type slot", () => {
+	test("when it renders", () => {
 		const newFoo = "new foo"
 
 		type Props = {
@@ -54,8 +56,10 @@ describe("mergeSlotProp", () => {
 
 		expect(slotRender).toBe(renderResult({ foo: newFoo, bar: 1 }))
 	})
+})
 
-	it("given 1 obtrusive render type slot, gives correct output", () => {
+describe("given 1 obtrusive render type slot", () => {
+	test("when it renders", () => {
 		const newFoo = "new foo"
 		type Props = {
 			foo: string
@@ -92,8 +96,10 @@ describe("mergeSlotProp", () => {
 		expect(obtrusiveRender.mock.calls[0][0].foo).toBe(newFoo)
 		expect(slotRender).toBe(overrideMessage)
 	})
+})
 
-	it("given 1 content type slot and 1 render type slot, gives correct output", () => {
+describe("given 1 content type slot and 1 render type slot", () => {
+	test("when it renders", () => {
 		const newContent = "new children"
 
 		type Props = {

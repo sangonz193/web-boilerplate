@@ -5,16 +5,16 @@ import { {{componentName}}State, {{componentName}}Styles } from "./{{componentNa
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles<{ [K in keyof {{componentName}}Styles]: IStyle }>((theme) => {
   return {
-  wrapper: {
-  },
+    wrapper: {
+    },
   }
-  })
+})
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  export function use{{componentName}}Styles(state: {{componentName}}State): {{componentName}}Styles {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function use{{componentName}}Styles(state: {{componentName}}State): {{componentName}}Styles {
   const styles = useStyles()
-
+  
   return {
-  wrapper: css(styles.wrapper),
+    wrapper: css(styles.wrapper),
   }
-  }
+}

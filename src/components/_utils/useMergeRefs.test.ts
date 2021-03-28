@@ -2,8 +2,8 @@ import { renderHook } from "@testing-library/react-hooks"
 
 import { useMergeRefs } from "./useMergeRefs"
 
-describe("useMergeRefs", () => {
-	test("handles object ref correctly", () => {
+describe("given 1 object ref", () => {
+	test("when ref callback is called", () => {
 		const objectRef = {
 			current: null,
 		}
@@ -15,10 +15,11 @@ describe("useMergeRefs", () => {
 
 		expect(objectRef.current).toBe(refValue)
 	})
+})
 
-	test("handles callback ref correctly", () => {
+describe("given 1 callback ref", () => {
+	test("when ref callback is called", () => {
 		const callbackRef = jest.fn(() => {})
-
 		const renderedHook = renderHook(() => useMergeRefs<string>(callbackRef))
 
 		const refValue = "test"
@@ -27,8 +28,10 @@ describe("useMergeRefs", () => {
 		expect(callbackRef).toBeCalledTimes(1)
 		expect(callbackRef).toBeCalledWith(refValue)
 	})
+})
 
-	test("handles object and callback refs correctly", () => {
+describe("given 1 object and 1 function refs", () => {
+	test("when ref callback is called", () => {
 		const objectRef = {
 			current: null,
 		}

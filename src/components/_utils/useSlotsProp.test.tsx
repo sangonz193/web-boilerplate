@@ -3,8 +3,8 @@ import { renderHook } from "@testing-library/react-hooks"
 
 import { useSlotsProp } from "./useSlotsProp"
 
-describe("useSlotsProp", () => {
-	it("given 1 render type slot, gives correct output", () => {
+describe("given 1 render type slot", () => {
+	test("when it renders", () => {
 		type Props = {
 			foo: string
 		}
@@ -34,7 +34,7 @@ describe("useSlotsProp", () => {
 		expect(Component.mock.calls[0][0].foo).toBe("test")
 	})
 
-	it("given 1 render type slot, gives correct output", () => {
+	test("when it renders two times", () => {
 		type Props = {
 			foo: string
 		}
