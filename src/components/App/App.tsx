@@ -1,17 +1,14 @@
-import React from "react"
-
-import { AppProps } from "./App.types"
+import { createComponent } from "../_utils/createComponent"
+import { AppProps, AppSlots, AppState, AppStyles } from "./App.types"
 import { renderApp } from "./renderApp"
-import { useApp } from "./useApp"
+import { useAppSlots } from "./useAppSlots"
+import { useAppState } from "./useAppState"
 import { useAppStyles } from "./useAppStyles"
 
-const AppComponent: React.ForwardRefRenderFunction<HTMLElement, AppProps> = (props, ref) => {
-	const state = useApp(props, ref)
-
-	useAppStyles(state)
-	return renderApp(state)
-}
-
-export const App = React.memo(React.forwardRef(AppComponent))
-
-App.displayName = "App"
+export const App = createComponent<AppProps, AppState, AppSlots, AppStyles>({
+	name: "App",
+	useState: useAppState,
+	useStyles: useAppStyles,
+	useSlots: useAppSlots,
+	render: renderApp,
+})

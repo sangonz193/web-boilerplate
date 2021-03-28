@@ -1,0 +1,14 @@
+import { Slots } from "{{slotsImportPath}}"
+import { useSlotsProp } from "{{useSlotsPropImportPath}}"
+import { {{componentName}}Slots, {{componentName}}State, {{componentName}}Styles } from "./{{componentName}}.types"
+
+export function use{{componentName}}Slots(state: {{componentName}}State, styles: {{componentName}}Styles): Slots<{{componentName}}Slots> {
+  return useSlotsProp<{{componentName}}Slots>(state.slotProp, {
+    wrapper: {
+      component: "div",
+      props: {
+        className: styles.wrapper
+      },
+    },
+  })
+}

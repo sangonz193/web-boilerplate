@@ -1,4 +1,12 @@
+import * as yup from "yup"
+
+const validatedEnv = yup
+	.object({
+		BACKEND_URL: yup.string().required(),
+	})
+	.required()
+	.validateSync(process.env)
+
 export const appConfig = {
-	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-	backendUrl: process.env.BACKEND_URL!,
+	backendUrl: validatedEnv.BACKEND_URL,
 }
