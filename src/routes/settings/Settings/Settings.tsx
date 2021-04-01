@@ -1,5 +1,6 @@
 import React from "react"
 
+import { useLayoutOptions } from "../../../components/Layout/useLayoutOptions"
 import { useSettingsStyles } from "./useSettingsStyles"
 
 export type SettingsProps = {
@@ -8,6 +9,10 @@ export type SettingsProps = {
 
 const SettingsComponent: React.FC<SettingsProps> = () => {
 	const styles = useSettingsStyles()
+
+	useLayoutOptions({
+		headerTitle: "Settings",
+	})
 
 	return <div className={styles.wrapper}>This is the settings page.</div>
 }

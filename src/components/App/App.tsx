@@ -1,6 +1,7 @@
 import React from "react"
 
 import { useRoutes } from "../../hooks/useRoutes"
+import { Layout } from "../Layout"
 
 export type AppProps = {
 	children?: never
@@ -9,5 +10,5 @@ export type AppProps = {
 export const App: React.FC<AppProps> = ({}) => {
 	const [routeConfig, params] = useRoutes() || []
 
-	return <div>{routeConfig?.element(params)}</div>
+	return <Layout>{routeConfig?.element(params)}</Layout>
 }

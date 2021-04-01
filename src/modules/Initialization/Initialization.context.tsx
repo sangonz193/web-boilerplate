@@ -1,6 +1,7 @@
 import React from "react"
 
 import { useReactiveVars } from "../../hooks/useReactiveVars"
+import { useRefWithInitializer } from "../../hooks/useRefWithInitializer"
 import { InitializationStore } from "./Initialization.store"
 
 export const InitializationContext = React.createContext<InitializationStore>((null as unknown) as InitializationStore)
@@ -8,7 +9,7 @@ export const InitializationContext = React.createContext<InitializationStore>((n
 const initStore = () => new InitializationStore()
 
 export const InitializationProvider: React.FC = ({ children }) => {
-	const [store] = React.useState(initStore)
+	const store = useRefWithInitializer(initStore).current
 
 	React.useState(() => {
 		store.block()

@@ -1,5 +1,6 @@
 import React from "react"
 
+import { useLayoutOptions } from "../../../components/Layout/useLayoutOptions"
 import { useHomeStyles } from "./useHomeStyles"
 
 export type HomeProps = {
@@ -8,6 +9,10 @@ export type HomeProps = {
 
 const HomeComponent: React.FC<HomeProps> = () => {
 	const styles = useHomeStyles()
+
+	useLayoutOptions({
+		headerTitle: "Home",
+	})
 
 	return <div className={styles.wrapper}>This is the home screen.</div>
 }
