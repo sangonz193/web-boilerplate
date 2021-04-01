@@ -2,24 +2,23 @@ import { IsFocusVisibleClassName } from "@fluentui/react/lib/Utilities"
 import React from "react"
 import { observe } from "selector-observer"
 
-import { useFocus } from "../../hooks/useFocus"
+import { useIsFocused } from "../../hooks/useIsFocused"
 import { useRootEventListener } from "../RootEventListeners"
 import { useAppStore } from "./useAppStore"
 
 export const AppManager: React.FC = () => {
 	const store = useAppStore()
 
-	const { handleFocus, handleBlur } = useFocus(
-		{
-			defaultFocus: store.isFocused(),
-			onFocus: () => store.isFocused(true),
-			onBlur: () => store.isFocused(false),
-		},
-		[]
-	)
+	const [focused, focusBindings] = useIsFocused({
+		defaultFocused: store.isFocused(),
+	})
 
-	useRootEventListener("onFocus", handleFocus)
-	useRootEventListener("onBlur", handleBlur)
+	React.useEffect(() => {
+		store.isFocused(focused)
+	}, [focused])
+
+	useRootEventListener("onFocus", focusBindings.onFocus)
+	useRootEventListener("onBlur", focusBindings.onBlur)
 
 	const isTouchTimeoutRef = React.useRef<NodeJS.Timeout>()
 	const isTouchRef = React.useRef<boolean>()
