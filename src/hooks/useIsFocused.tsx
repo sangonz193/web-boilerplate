@@ -1,4 +1,7 @@
+import throttle from "lodash/throttle"
 import React from "react"
+
+import { useRefWithInitializer } from "./useRefWithInitializer"
 
 export type UseIsFocusedProps = {
 	defaultFocused?: boolean
@@ -13,34 +16,27 @@ export type UseIsFocusedOutput = [
 ]
 
 export const useIsFocused = (props: UseIsFocusedProps): UseIsFocusedOutput => {
-	const { defaultFocused } = props
-	const [focused, setFocused] = React.useState(defaultFocused ?? false)
+	const { defaultFocused = false } = props
+	const [focused, setFocused] = React.useState(defaultFocused)
 	const lastIsFocusRef = React.useRef(focused)
-	const handleChangeTimeout = React.useRef<number | undefined>()
 
-	const handleChange = async (type: "focus" | "blur") => {
-		clearTimeout(handleChangeTimeout.current)
-
-		handleChangeTimeout.current = window.setTimeout(() => {
-			if (lastIsFocusRef.current === (type === "focus")) {
+	const handleChange = useRefWithInitializer(() =>
+		throttle((nextFocused: boolean) => {
+			if (lastIsFocusRef.current === nextFocused) {
 				return
 			}
 
-			if (type === "focus") {
-				lastIsFocusRef.current = true
-				setFocused(true)
-			} else if (type === "blur") {
-				lastIsFocusRef.current = false
-				setFocused(false)
-			}
+			lastIsFocusRef.current = nextFocused
+			setFocused(nextFocused)
+			console.log(nextFocused)
 		}, 10)
-	}
+	).current
 
 	return [
 		focused,
 		{
-			onBlur: React.useCallback(() => handleChange("blur"), []),
-			onFocus: React.useCallback(() => handleChange("focus"), []),
+			onBlur: React.useCallback(() => handleChange(false), []),
+			onFocus: React.useCallback(() => handleChange(true), []),
 		},
 	]
 }
