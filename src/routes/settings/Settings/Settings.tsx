@@ -10,7 +10,9 @@ export type SettingsProps = {
 const SettingsComponent: React.FC<SettingsProps> = () => {
 	const styles = useSettingsStyles()
 
-	useLayoutOptions(React.useCallback(() => ({ headerTitle: "Settings" }), []))
+	useLayoutOptions({
+		headerTitle: "Settings",
+	})
 
 	return <div className={styles.wrapper}>This is the settings page.</div>
 }

@@ -10,7 +10,9 @@ export type HomeProps = {
 const HomeComponent: React.FC<HomeProps> = () => {
 	const styles = useHomeStyles()
 
-	useLayoutOptions(React.useCallback(() => ({ headerTitle: "Home" }), []))
+	useLayoutOptions({
+		headerTitle: "Home",
+	})
 
 	return <div className={styles.wrapper}>This is the home screen.</div>
 }
