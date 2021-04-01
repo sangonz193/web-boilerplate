@@ -6,6 +6,7 @@ import { withSiblings } from "./_utils/withSiblings"
 import { withWrappers } from "./_utils/withWrapper"
 import { createGraphqlClient } from "./graphql/createGraphQLClient"
 import { InitializationProvider, useIsInitializing } from "./modules/Initialization"
+import { NavigationProvider } from "./modules/Navigation"
 
 const themeProviderStyle = { height: "100%" }
 
@@ -16,6 +17,7 @@ const WithWrappers = withWrappers(
 		(props) => {
 			return <ThemeProvider style={themeProviderStyle}>{props.children}</ThemeProvider>
 		},
+		NavigationProvider,
 		({ children }) => <ApolloProvider client={React.useState(createGraphqlClient)[0]}>{children}</ApolloProvider>,
 	],
 	withSiblings([], (props: { Component: React.FC }) => {

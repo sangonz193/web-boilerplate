@@ -15,14 +15,12 @@ const handlePossibleComponentFolder = async (possibleComponentFolderPath: string
 	const indexFilePath = path.join(possibleComponentFolderPath, "index.ts")
 	const filePathsToExportFrom: string[] = []
 
+	if (!/^[A-Z]\w*/.test(possibleComponentName)) {
+		return
+	}
+
 	await Promise.all(
-		[
-			`${possibleComponentName}.tsx`,
-			`${possibleComponentName}.types.ts`,
-			`render${possibleComponentName}.tsx`,
-			`use${possibleComponentName}.tsx`,
-			`use${possibleComponentName}Styles.ts`,
-		].map(async (componentFileName) => {
+		[`${possibleComponentName}.tsx`].map(async (componentFileName) => {
 			const componentFilePath = path.join(possibleComponentFolderPath, componentFileName)
 
 			if (await fsExists(componentFilePath)) {
@@ -31,7 +29,7 @@ const handlePossibleComponentFolder = async (possibleComponentFolderPath: string
 		})
 	)
 
-	if (filePathsToExportFrom.length > 3) {
+	if (filePathsToExportFrom.length) {
 		await fs.writeFile(
 			indexFilePath,
 			getFormattedCode(
