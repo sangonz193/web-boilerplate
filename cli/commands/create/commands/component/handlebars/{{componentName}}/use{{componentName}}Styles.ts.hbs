@@ -1,6 +1,8 @@
 import { css, makeStyles } from "@fluentui/react"
 
-import { {{componentName}}State, {{componentName}}Styles } from "./{{componentName}}.types"
+export type {{componentName}}StyleProps = {
+  className: string | undefined
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles((theme) => {
@@ -10,11 +12,10 @@ const useStyles = makeStyles((theme) => {
   }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function use{{componentName}}Styles(state: {{componentName}}State): {{componentName}}Styles {
+export function use{{componentName}}Styles(props: {{componentName}}StyleProps) {
   const styles = useStyles()
   
   return {
-    wrapper: css(styles.wrapper),
+    wrapper: css(styles.wrapper, props.className),
   }
 }

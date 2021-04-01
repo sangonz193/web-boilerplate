@@ -1,7 +1,6 @@
 import React from "react"
 
-import { LayoutContext } from "./Layout.context"
-import { LayoutOptions } from "./Layout.types"
+import { LayoutContext, LayoutOptions } from "./Layout.context"
 
 export const useLayoutOptions = (getOptions: () => Partial<LayoutOptions>) => {
 	const { setLayoutOptions } = React.useContext(LayoutContext)

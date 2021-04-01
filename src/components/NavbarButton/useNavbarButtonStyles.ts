@@ -1,7 +1,11 @@
 import { css, makeStyles } from "@fluentui/react"
 
 import { getMinWidthSelector } from "../../styles/getMinWidthSelector"
-import { NavbarButtonState, NavbarButtonStyles } from "./NavbarButton.types"
+
+export type NavbarButtonStyleProps = {
+	className: string | undefined
+	active: boolean
+}
 
 const useStyles = makeStyles((theme) => {
 	return {
@@ -50,12 +54,12 @@ const useStyles = makeStyles((theme) => {
 	}
 })
 
-export function useNavbarButtonStyles(state: NavbarButtonState): NavbarButtonStyles {
+export function useNavbarButtonStyles(props: NavbarButtonStyleProps) {
 	const styles = useStyles()
 
 	return {
-		wrapper: styles.wrapper,
-		icon: css(styles.icon, state.active && styles.iconActive),
+		wrapper: css(styles.wrapper, props.className),
+		icon: css(styles.icon, props.active && styles.iconActive),
 		activeIndicator: styles.activeIndicator,
 	}
 }

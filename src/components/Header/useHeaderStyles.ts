@@ -1,11 +1,13 @@
-import { makeStyles } from "@fluentui/react"
+import { css, makeStyles } from "@fluentui/react"
 
-import { HeaderState, HeaderStyles } from "./Header.types"
+export type HeaderStyleProps = {
+	className: string | undefined
+}
 
 const useStyles = makeStyles((theme) => {
 	return {
 		wrapper: {
-			display: "flex",
+			flexDirection: "row",
 			height: 50,
 			flexShrink: 0,
 
@@ -29,18 +31,14 @@ const useStyles = makeStyles((theme) => {
 				color: theme.semanticColors.bodyText,
 			},
 		],
-
-		right: {},
 	}
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function useHeaderStyles(state: HeaderState): HeaderStyles {
+export function useHeaderStyles(props: HeaderStyleProps) {
 	const styles = useStyles()
 
 	return {
-		wrapper: styles.wrapper,
+		wrapper: css(styles.wrapper, props.className),
 		title: styles.title,
-		right: styles.right,
 	}
 }

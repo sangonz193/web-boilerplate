@@ -1,13 +1,15 @@
 import { css, makeStyles } from "@fluentui/react"
 
 import { getMinWidthSelector } from "../../styles/getMinWidthSelector"
-import { NavbarState, NavbarStyles } from "./Navbar.types"
+
+export type NavbarStyleProps = {}
 
 const useStyles = makeStyles((theme) => {
 	return {
 		focusZone: {
 			display: "flex",
 			flexShrink: 0,
+			flexDirection: "row",
 
 			borderTop: `1px solid ${theme.semanticColors.bodyDivider}`,
 
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme) => {
 })
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function useNavbarStyles(state: NavbarState): NavbarStyles {
+export function useNavbarStyles(props: NavbarStyleProps = {}) {
 	const styles = useStyles()
 
 	return {

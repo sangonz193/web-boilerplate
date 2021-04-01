@@ -6,9 +6,7 @@ import { useRefWithInitializer } from "../../hooks/useRefWithInitializer"
 export const NavigationContext = React.createContext<History>((null as unknown) as History)
 
 export const NavigationProvider: React.FC = ({ children }) => {
-	const history = useRefWithInitializer(() => {
-		return createBrowserHistory()
-	}).current
+	const history = useRefWithInitializer(() => createBrowserHistory()).current
 
 	return <NavigationContext.Provider value={history}>{children}</NavigationContext.Provider>
 }

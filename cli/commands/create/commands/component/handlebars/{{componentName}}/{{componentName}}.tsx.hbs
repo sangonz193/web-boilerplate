@@ -1,24 +1,35 @@
-import { createComponent } from "{{createComponentImportPath}}"
-import {
-    {{componentName}}Props,
-    {{componentName}}State,
-    {{componentName}}Slots,
-    {{componentName}}Styles
-} from "./{{componentName}}.types"
-import { render{{componentName}} } from "./render{{componentName}}"
-import { use{{componentName}}Slots } from "./use{{componentName}}Slots"
-import { use{{componentName}}State } from "./use{{componentName}}State"
-import { use{{componentName}}Styles } from "./use{{componentName}}Styles"
+import React from "react"
 
-export const {{componentName}} = createComponent<
-    {{componentName}}Props,
-    {{componentName}}State,
-    {{componentName}}Slots,
-    {{componentName}}Styles
->({
-    name: "{{componentName}}",
-    useState: use{{componentName}}State,
-    useStyles: use{{componentName}}Styles,
-    useSlots: use{{componentName}}Slots,
-    render: render{{componentName}},
-})
+{{#if withStyles}}
+import { use{{componentName}}Styles } from "./use{{componentName}}Styles"
+{{/if}}
+
+export type {{componentName}}Props = {
+    {{#if withChildren}}children?: React.ReactNode{{else}}children?: undefined{{/if}}
+    {{#if withStyles}}className?: string{{/if}}
+}
+
+{{#unless withHocs}}export {{/unless}}const {{componentName}}{{#if withHocs}}Component{{/if}}: React.FC<{{componentName}}Props> = ({
+    {{#if withChildren}}children,{{/if}}
+    {{#if withStyles}}className,{{/if}}
+    }) => {
+
+
+    {{#if withStyles}}
+    const styles = use{{componentName}}Styles({
+        className,
+    })
+    {{/if}}
+
+    return (
+        <div{{#if withStyles}} className={styles.wrapper}{{/if}}>
+            {{#if withChildren}}
+            {children}
+            {{/if}}
+        </div>
+    )
+}
+
+{{#if withHocs}}
+export const {{componentName}} = {{#if withMemoHoc}}React.memo({{/if}}{{componentName}}Component{{#if withMemoHoc}}){{/if}}
+{{/if}}

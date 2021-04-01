@@ -1,5 +1,5 @@
-import { homeRouteConfig } from "./home/homeRouteConfig"
-import { settingsRouteConfig } from "./settings/settingsRouteConfig"
+import { homeRouteConfig } from "./home/homeRoute.config"
+import { settingsRouteConfig } from "./settings/settingsRoute.config"
 
 export const routesConfig = {
 	home: homeRouteConfig,

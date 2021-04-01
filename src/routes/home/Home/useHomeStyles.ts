@@ -1,16 +1,18 @@
 import { makeStyles } from "@fluentui/react"
 
-import { AppState, AppStyles } from "./App.types"
+export type HomeStyleProps = {}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles((theme) => {
 	return {
-		wrapper: {},
+		wrapper: {
+			padding: 20,
+		},
 	}
 })
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function useAppStyles(state: AppState): AppStyles {
+export function useHomeStyles(props: HomeStyleProps = {}) {
 	const styles = useStyles()
 
 	return {
