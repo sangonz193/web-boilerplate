@@ -35,11 +35,11 @@ export const useFocus = (props: UseFocusProps, deps: DependencyList): UseFocusOu
 
 	const handleFocus = useCallback(() => {
 		handleChange("focus")
-	}, [...deps])
+	}, deps)
 
 	const handleBlur = useCallback(() => {
 		handleChange("blur")
-	}, [...deps])
+	}, deps)
 
 	return { handleFocus, handleBlur }
 }
