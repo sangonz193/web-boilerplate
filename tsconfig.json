@@ -39,10 +39,8 @@
   "include": [
     "**/*.js",
     ".*.js",
-    ".*/*.js",
     "**/*.ts",
     "**/*.tsx",
-    ".**/*.ts",
     ".storybook/preview.js",
     ".storybook/main.js",
   ]

@@ -1,17 +1,14 @@
 import React from "react"
 
-import { AppProps } from "./App.types"
-import { renderApp } from "./renderApp"
-import { useApp } from "./useApp"
-import { useAppStyles } from "./useAppStyles"
+import { useRoutes } from "../../hooks/useRoutes"
+import { Layout } from "../Layout"
 
-export const App = React.memo(
-	React.forwardRef<HTMLElement, AppProps>((props, ref) => {
-		const state = useApp(props, ref)
+export type AppProps = {
+	children?: never
+}
 
-		useAppStyles(state)
-		return renderApp(state)
-	})
-)
+export const App: React.FC<AppProps> = ({}) => {
+	const [routeConfig, params] = useRoutes() || []
 
-App.displayName = "App"
+	return <Layout>{routeConfig?.element(params)}</Layout>
+}

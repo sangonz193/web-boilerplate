@@ -4,17 +4,20 @@ import { AddManyActionConfig } from "plop"
 
 import { getFormattedCode } from "../../../../_utils/getFormattedCode"
 import { projectPath } from "../../../../_utils/projectPath"
-import { getImportPath } from "../../../generate-files/_utils/getImportPath"
 import { GetPlopGeneratorConfig } from "../../plop/GetPlopGeneratorConfig"
 
 export type ComponentPlopGeneratorAnswers = {
 	name: string
 	relativePath: string
+	withStyles: boolean
+	withChildren: boolean
 }
 
 export const getComponentPlopGeneratorBypassArgsFromAnswers = (answers: Partial<ComponentPlopGeneratorAnswers>) => [
 	answers.name ?? "_",
 	answers.relativePath ?? "_",
+	answers.withStyles?.toString() ?? "_",
+	answers.withChildren?.toString() ?? "_",
 ]
 
 const getConfig: GetPlopGeneratorConfig = (plop) => ({
@@ -45,6 +48,16 @@ const getConfig: GetPlopGeneratorConfig = (plop) => ({
 				)
 			},
 		},
+		{
+			type: "confirm",
+			name: "withStyles",
+			message: "Is the component going to have styles?:",
+		},
+		{
+			type: "confirm",
+			name: "withChildren",
+			message: "Is the component going to render children?:",
+		},
 	],
 
 	actions: (_answers) => {
@@ -65,14 +78,11 @@ const getConfig: GetPlopGeneratorConfig = (plop) => ({
 				type: "addMany",
 				data: {
 					componentName: answers.name,
-					dangerousKeysOfImportPath: getImportPath(
-						path.resolve(destination, "_", "_"),
-						path.resolve(projectPath, "src", "_utils", "dangerousKeysOf.ts")
-					),
-					propsToStateImportPath: getImportPath(
-						path.resolve(destination, "_", "_"),
-						path.resolve(projectPath, "src", "_utils", "PropsToState.ts")
-					),
+
+					withStyles: answers.withStyles,
+					withHocs: !answers.withChildren,
+					withMemoHoc: !answers.withChildren,
+					withChildren: answers.withChildren,
 				},
 				destination,
 				templateFiles: [handlebarsFilePathPattern],

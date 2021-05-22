@@ -32,3 +32,4 @@ yarn-error.log*
 index.ts
 index.tsx
 !/src/index.tsx
+!/src/modules/**/index.ts
