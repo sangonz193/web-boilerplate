@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://sangonz193.github.io/web-boilerplate/static/css/main.48e04d93.chunk.css",
-    "main.js": "https://sangonz193.github.io/web-boilerplate/static/js/main.27c159bf.chunk.js",
-    "main.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/main.27c159bf.chunk.js.map",
+    "main.js": "https://sangonz193.github.io/web-boilerplate/static/js/main.ae570cfe.chunk.js",
+    "main.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/main.ae570cfe.chunk.js.map",
     "runtime-main.js": "https://sangonz193.github.io/web-boilerplate/static/js/runtime-main.1714f43f.js",
     "runtime-main.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/runtime-main.1714f43f.js.map",
     "static/js/2.062abbd1.chunk.js": "https://sangonz193.github.io/web-boilerplate/static/js/2.062abbd1.chunk.js",
@@ -20,6 +20,6 @@
     "static/js/runtime-main.1714f43f.js",
     "static/js/2.062abbd1.chunk.js",
     "static/css/main.48e04d93.chunk.css",
-    "static/js/main.27c159bf.chunk.js"
+    "static/js/main.ae570cfe.chunk.js"
   ]
 }
