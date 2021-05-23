@@ -1,7 +1,7 @@
+import { _fs } from "@sangonz193/utils/node/fs"
 import path from "path"
 import { AddActionConfig } from "plop"
 
-import { _fs } from "../../../../_utils/fs"
 import { getFormattedCode } from "../../../../_utils/getFormattedCode"
 import { getMatchingFilePathsSync } from "../../../../_utils/getMatchingFilePaths"
 import { projectPath } from "../../../../_utils/projectPath"

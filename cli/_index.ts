@@ -1,10 +1,10 @@
+import { fs } from "@sangonz193/utils/node/fs"
+import { fsExists } from "@sangonz193/utils/node/fsExists"
 import chalk from "chalk"
 import dotenv from "dotenv"
 import path from "path"
 import semver from "semver"
 
-import { fs } from "./_utils/fs"
-import { fsExists } from "./_utils/fsExists"
 import { projectPath } from "./_utils/projectPath"
 
 const run = async () => {

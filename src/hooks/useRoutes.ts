@@ -1,6 +1,6 @@
+import { dangerousKeysOf } from "@sangonz193/utils/dangerousKeysOf"
 import React from "react"
 
-import { dangerousKeysOf } from "../_utils/dangerousKeysOf"
 import { matchRouteConfig } from "../modules/Navigation/matchRouteConfig"
 import { useLocation } from "../modules/Navigation/useLocation"
 import { RouteConfig } from "../routes/_utils/RouteConfig"

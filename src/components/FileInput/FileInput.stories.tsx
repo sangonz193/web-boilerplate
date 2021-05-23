@@ -1,9 +1,9 @@
+import { dangerousKeysOf } from "@sangonz193/utils/dangerousKeysOf"
 import { action } from "@storybook/addon-actions"
 import { Meta, Story } from "@storybook/react"
 import identity from "lodash/identity"
 import React from "react"
 
-import { dangerousKeysOf } from "../../_utils/dangerousKeysOf"
 import { mergeFunctions } from "../../_utils/mergeFunctions"
 import { StorybookArgTypes } from "../_utils/StorybookArgTypes"
 import { FileInput, FileInputProps } from "./FileInput"

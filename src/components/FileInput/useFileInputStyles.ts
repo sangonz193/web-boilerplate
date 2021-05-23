@@ -1,6 +1,5 @@
 import { css, makeStyles } from "@fluentui/react"
-
-import { getUuid } from "../../_utils/getUuid"
+import { getUuid } from "@sangonz193/utils/getUuid"
 
 export type FileInputStyleProps = {
 	className: string | undefined

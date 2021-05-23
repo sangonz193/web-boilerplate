@@ -1,12 +1,12 @@
 import { loadSchema } from "@graphql-toolkit/core"
 import { CodeFileLoader } from "@graphql-tools/code-file-loader"
 import { UrlLoader } from "@graphql-tools/url-loader"
+import { fs } from "@sangonz193/utils/node/fs"
 import chalk from "chalk"
 import { GraphQLSchema, printSchema } from "graphql"
 import path from "path"
 import * as yup from "yup"
 
-import { fs } from "../../_utils/fs"
 import { getFormattedCode } from "../../_utils/getFormattedCode"
 import { projectPath } from "../../_utils/projectPath"
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"
