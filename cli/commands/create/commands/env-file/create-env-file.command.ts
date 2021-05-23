@@ -35,10 +35,10 @@ const command: CommandModule<{}, { useProcess: boolean }> = {
 			fs.readFile(appEnvFilePath, "utf8"),
 			fs.readFile(cliEnvFilePath, "utf8"),
 		])
-		const fullEnvFile = appEnvFileContent + "\n" + cliEnvFileContent
+		const fullEnvFileContent = appEnvFileContent + "\n" + cliEnvFileContent
 
 		if (args.useProcess) {
-			const parsedEnv = dotenv.parse(fullEnvFile)
+			const parsedEnv = dotenv.parse(fullEnvFileContent)
 			let fileContent = ""
 			Object.keys(parsedEnv).forEach((key) => {
 				fileContent += `${key}=${process.env[key] ?? parsedEnv[key]}\n`
@@ -46,7 +46,7 @@ const command: CommandModule<{}, { useProcess: boolean }> = {
 
 			await fs.writeFile(envFilePath, fileContent)
 		} else {
-			await fs.writeFile(envFilePath, fullEnvFile)
+			await fs.writeFile(envFilePath, fullEnvFileContent)
 		}
 
 		console.log(chalk.green(`.env file successfully created.`))
