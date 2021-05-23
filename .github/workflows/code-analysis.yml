@@ -1,6 +1,9 @@
-name: CI
+name: code-analysis
 
-on: push
+on:
+  push:
+    branches-ignore:
+      - main
 
 jobs:
     code-analysis:

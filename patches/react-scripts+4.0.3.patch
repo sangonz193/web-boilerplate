@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-scripts/config/env.js b/node_modules/react-scripts/config/env.js
-index 0ad47cb..d12bdaf 100644
+index 0ad47cb..3fb63ce 100644
 --- a/node_modules/react-scripts/config/env.js
 +++ b/node_modules/react-scripts/config/env.js
 @@ -9,8 +9,7 @@
@@ -12,7 +12,7 @@ index 0ad47cb..d12bdaf 100644
  
  // Make sure that including paths.js after env.js will read .env variables.
  delete require.cache[require.resolve('./paths')];
-@@ -22,55 +21,29 @@ if (!NODE_ENV) {
+@@ -22,55 +21,25 @@ if (!NODE_ENV) {
    );
  }
  
@@ -26,9 +26,9 @@ index 0ad47cb..d12bdaf 100644
 -  `${paths.dotenv}.${NODE_ENV}`,
 -  paths.dotenv,
 -].filter(Boolean);
-+if (fs.existsSync(".env")) {
-+  dotenv.config({})
-+}
++function getAppEnvVariables() {
++  const appEnvFileContent = fs.readFileSync(".env.app", "utf8")
++  const commentedEnvRegex = /# ([\w_]+)=\n/
  
 -// Load environment variables from .env* files. Suppress warnings using silent
 -// if this file is missing. dotenv will never modify any environment variables
@@ -44,12 +44,13 @@ index 0ad47cb..d12bdaf 100644
 -    );
 -  }
 -});
-+function getAppEnvVariables() {
-+  const appEnvFileContent = fs.readFileSync(".env.app", "utf8")
-+  const commentedEnvRegex = /# ([\w_]+)=\n/
-+
 +  let result = Object.keys(dotenv.parse(appEnvFileContent))
- 
++
++  appEnvFileContent.match(new RegExp(commentedEnvRegex, "g"))?.forEach(match => {
++    const envName = match.match(commentedEnvRegex)?.[1]
++    if (envName) result.push(envName)
++  })
+   
 -// We support resolving modules according to `NODE_PATH`.
 -// This lets you use absolute paths in imports inside large monorepos:
 -// https://github.com/facebook/create-react-app/issues/253.
@@ -65,11 +66,6 @@ index 0ad47cb..d12bdaf 100644
 -  .filter(folder => folder && !path.isAbsolute(folder))
 -  .map(folder => path.resolve(appDirectory, folder))
 -  .join(path.delimiter);
-+  appEnvFileContent.match(new RegExp(commentedEnvRegex, "g"))?.forEach(match => {
-+    const envName = match.match(commentedEnvRegex)?.[1]
-+    if (envName) result.push(envName)
-+  })
-+  
 +  return result
 +}
  
