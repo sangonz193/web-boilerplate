@@ -19,6 +19,11 @@ jobs:
                   npm i -g npm@6
                   npm i
 
+            - name: Create env file
+              run: node cli create env-file -p
+              env: 
+                PUBLIC_URL: https://sangonz193.github.io/web-boilerplate
+
             - name: Generate files
               run: node cli generate-files
 
