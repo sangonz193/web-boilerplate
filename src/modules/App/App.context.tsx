@@ -2,7 +2,7 @@ import React from "react"
 
 import { AppStore } from "./App.store"
 
-export const AppContext = React.createContext<AppStore>((null as unknown) as AppStore)
+export const AppContext = React.createContext<AppStore>(null as unknown as AppStore)
 
 const initStore = () => new AppStore()
 

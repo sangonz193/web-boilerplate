@@ -11,4 +11,4 @@ export type LayoutContextValue = {
 	setLayoutOptions: (setOptions: SetLayoutOptions) => void
 }
 
-export const LayoutContext = React.createContext<LayoutContextValue>((undefined as unknown) as LayoutContextValue)
+export const LayoutContext = React.createContext<LayoutContextValue>(undefined as unknown as LayoutContextValue)

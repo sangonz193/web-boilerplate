@@ -25,9 +25,9 @@ const generateAssetTypes = async (filePath: string) => {
 
 export const generateAssetsTypes = async (watch: boolean) => {
 	const srcPath = path.resolve(projectPath, "src")
-	const pathPatterns = dangerousKeysOf(
-		identityMap<AssetExtension>({ jpeg: 0, jpg: 0, png: 0, svg: 0, ttf: 0 })
-	).map((ext) => path.resolve(srcPath, "**", "*." + ext))
+	const pathPatterns = dangerousKeysOf(identityMap<AssetExtension>({ jpeg: 0, jpg: 0, png: 0, svg: 0, ttf: 0 })).map(
+		(ext) => path.resolve(srcPath, "**", "*." + ext)
+	)
 
 	const filePaths = (await Promise.all(pathPatterns.map((pathPattern) => getMatchingFilePaths(pathPattern)))).reduce<
 		string[]

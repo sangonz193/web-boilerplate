@@ -16,7 +16,7 @@ export const useRoutes = <T extends {}>(): [RouteConfig<any>, T] | null => {
 			const match = matchRouteConfig(location.pathname, routeConfig)
 
 			if (match) {
-				return [routeConfig, ((match.params as unknown) as any) || {}]
+				return [routeConfig, (match.params as unknown as any) || {}]
 			}
 		}
 

@@ -9,7 +9,7 @@ export class RootEventListenersStore {
 	constructor() {
 		this.listenersMap.onNextChange((newValue) => {
 			const entries =
-				((Object.entries(newValue) as unknown) as Array<
+				(Object.entries(newValue) as unknown as Array<
 					Exclude<
 						{
 							[K in keyof typeof newValue]: [K, Exclude<typeof newValue[K], undefined>]
