@@ -1,0 +1,49 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Use Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: "15.x"
+
+            - name: Install dependencies
+              run: |
+                  npm i -g npm@6
+                  npm i
+
+            - name: Create env file
+              run: node cli create env-file -p
+              env: 
+                PUBLIC_URL: https://sangonz193.github.io/web-boilerplate
+
+            - name: Generate files
+              run: node cli generate-files
+
+            - name: No changes to commit
+              run: |
+                  git status --porcelain
+                  [[ $(git status --porcelain) ]] && exit 1 || exit 0
+
+            - name: TypeScript check
+              run: npx tsc
+
+            - name: ESLint check
+              run: npm run lint
+
+            - name: Tests
+              run: npm test
+
+            - name: Build
+              run: npm run build
+
+            - name: Deploy
+              run: npm run deploy
