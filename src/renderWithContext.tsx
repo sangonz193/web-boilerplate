@@ -1,30 +1,29 @@
 import { ApolloProvider } from "@apollo/client"
-import { ThemeProvider } from "@fluentui/react"
 import React from "react"
 
 import { withSiblings } from "./_utils/withSiblings"
 import { withWrappers } from "./_utils/withWrapper"
 import { createGraphqlClient } from "./graphql/createGraphQLClient"
+import { useRefWithInitializer } from "./hooks/useRefWithInitializer"
 import { AppManager, AppProvider } from "./modules/App"
+import { AppearanceManager, AppearanceProvider } from "./modules/Appearance"
 import { InitializationProvider, useIsInitializing } from "./modules/Initialization"
 import { NavigationProvider } from "./modules/Navigation"
 import { RootEventListenersProvider } from "./modules/RootEventListeners"
-
-const themeProviderStyle = { height: "100%" }
 
 const WithWrappers = withWrappers(
 	[
 		React.StrictMode,
 		InitializationProvider,
 		RootEventListenersProvider,
-		(props) => {
-			return <ThemeProvider style={themeProviderStyle}>{props.children}</ThemeProvider>
-		},
 		AppProvider,
+		AppearanceProvider,
 		NavigationProvider,
-		({ children }) => <ApolloProvider client={React.useState(createGraphqlClient)[0]}>{children}</ApolloProvider>,
+		({ children }) => (
+			<ApolloProvider client={useRefWithInitializer(createGraphqlClient).current}>{children}</ApolloProvider>
+		),
 	],
-	withSiblings([AppManager], (props: { Component: React.FC }) => {
+	withSiblings([AppManager, AppearanceManager], (props: { Component: React.FC }) => {
 		const isInitializing = useIsInitializing()
 
 		return isInitializing ? null : <props.Component />

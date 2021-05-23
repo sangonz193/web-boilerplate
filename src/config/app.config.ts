@@ -1,12 +1,18 @@
 import * as yup from "yup"
 
-const validatedEnv = yup
+const { APP_NAME, BACKEND_URL, PUBLIC_URL } = yup
 	.object({
+		APP_NAME: yup.string().required(),
 		BACKEND_URL: yup.string().required(),
+		PUBLIC_URL: yup.string().default(""),
 	})
 	.required()
 	.validateSync(process.env)
 
 export const appConfig = {
-	backendUrl: validatedEnv.BACKEND_URL,
+	name: APP_NAME,
+	shortCodeName: "bp",
+	backendUrl: BACKEND_URL,
+	version: process.env.npm_package_version as string,
+	storageScope: PUBLIC_URL.replace(/\/$/, "") || "/",
 }

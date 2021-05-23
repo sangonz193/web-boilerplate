@@ -1,7 +1,11 @@
 import { CommandModule } from "yargs"
 
-import { runPlopInterface } from "../../plop/runPlopInterface"
-import { ComponentPlopGeneratorAnswers } from "./component.plop-generator"
+import { runPlopInterface } from "../../../../_utils/runPlopInterface"
+import { createPlopFilePath } from "../../plop/plopfile.path"
+import {
+	ComponentPlopGeneratorAnswers,
+	getComponentPlopGeneratorBypassArgsFromAnswers,
+} from "./component.plop-generator"
 
 const command: CommandModule<
 	{},
@@ -52,7 +56,8 @@ const command: CommandModule<
 
 		runPlopInterface({
 			generator: "component",
-			config,
+			bypassAnswers: getComponentPlopGeneratorBypassArgsFromAnswers(config),
+			plopFilePath: createPlopFilePath,
 		})
 	},
 }

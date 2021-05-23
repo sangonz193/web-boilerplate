@@ -1,10 +1,9 @@
-import { FontIcon, ILinkProps, Link } from "@fluentui/react"
+import { FontIcon, ILinkProps, Link, Stack } from "@fluentui/react"
 import React from "react"
 
 import { useMatchPath } from "../../modules/Navigation"
 import { useHistory } from "../../modules/Navigation/useHistory"
 import { useLocation } from "../../modules/Navigation/useLocation"
-import { Div } from "../Div"
 import { useNavbarButtonStyles } from "./useNavbarButtonStyles"
 
 export type NavbarButtonProps = {
@@ -45,7 +44,7 @@ const NavbarButtonComponent: React.FC<NavbarButtonProps> = ({ className, route, 
 
 	return (
 		<Link className={styles.wrapper} title={routeName} href={route} onClick={handleClick}>
-			{active && <Div className={styles.activeIndicator} />}
+			{active && <Stack className={styles.activeIndicator} />}
 			<FontIcon iconName={iconName} className={styles.icon} />
 		</Link>
 	)
