@@ -6,20 +6,19 @@ import { projectPath } from "../../_utils/projectPath"
 const command: CommandModule<{}, {}> = {
 	command: "dev",
 
-	describe: "Runs the app in development mode and runs generate-files on file changes.",
+	describe: "Runs the app in development mode.",
 
 	handler: async () => {
-		await Promise.all([
-			spawn("npx", ["react-scripts", "start"], {
-				stdio: "inherit",
-				cwd: projectPath,
-				env: {
-					...process.env,
-					SKIP_PREFLIGHT_CHECK: "true",
-				},
-			}),
-			spawn("node", ["cli", "generate-files", "-w"]),
-		])
+		await spawn("node", ["cli", "generate-files"])
+
+		await spawn("npx", ["react-scripts", "start"], {
+			stdio: "inherit",
+			cwd: projectPath,
+			env: {
+				...process.env,
+				SKIP_PREFLIGHT_CHECK: "true",
+			},
+		})
 	},
 }
 

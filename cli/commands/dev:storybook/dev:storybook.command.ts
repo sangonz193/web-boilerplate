@@ -7,13 +7,13 @@ import { projectPath } from "../../_utils/projectPath"
 const command: CommandModule<{}, {}> = {
 	command: "dev:storybook",
 
-	describe: "Runs the app in development mode and runs generate-files on file changes.",
+	describe: "Runs the storybook interface.",
 
 	handler: async () => {
+		await spawn("node", ["cli", "generate-files"])
+
 		const storybookBinFolderPath = path.resolve(projectPath, "node_modules", "@storybook", "react", "bin")
 		require(storybookBinFolderPath)
-
-		await spawn("node", ["cli", "generate-files", "-w"])
 	},
 }
 
