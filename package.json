@@ -30,7 +30,6 @@
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
     "build": "node cli build",
-    "deploy": "gh-pages -d build",
     "test": "node cli test",
     "postinstall": "patch-package"
   },
