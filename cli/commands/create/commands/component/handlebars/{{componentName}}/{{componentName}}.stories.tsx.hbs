@@ -1,0 +1,36 @@
+import { Meta, Story } from "@storybook/react"
+import identity from "lodash/identity"
+
+import { SafeOmit } from "{{safeOmitImportPathFromStories}}"
+import { StorybookArgTypes } from "{{storybookArgTypesImportPathFromStories}}"
+import { {{componentName}}, {{componentName}}Props } from "./{{componentName}}"
+
+type StoryProps = Required<SafeOmit<{{componentName}}Props, "children" {{#if withStyles}}| "className"{{/if}}>>
+
+const argTypes = identity<StorybookArgTypes<StoryProps>>({})
+
+export default identity<Meta<StoryProps>>({
+	title: "{{componentName}}",
+	component: {{componentName}},
+	argTypes,
+	parameters: {
+		controls: {
+			include: Object.keys(
+				identity<Record<keyof StoryProps, 0>>({
+					label: 0,
+					errorMessage: 0,
+				})
+			),
+		},
+	},
+})
+
+const Template: Story<StoryProps> = (props) => {
+	return (
+		<div style=\{{ maxWidth: 300 }}>
+			<{{componentName}} {...props} />
+		</div>
+	)
+}
+
+export const Default = Template.bind({})
