@@ -7,7 +7,7 @@ BACKEND_URL=http://localhost:5000
 
 # Path where the app is going to be hosted.
 # For development, keep empty.
-PUBLIC_URL=/
+PUBLIC_URL=
 
 # Version of the app.
 # npm_package_version=

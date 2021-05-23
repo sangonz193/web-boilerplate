@@ -28,8 +28,6 @@
     "generate-files:watch": "node cli generate-files -w",
     "lint:fix": "eslint . --fix",
     "build": "node cli build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "test": "node cli test",
     "postinstall": "patch-package"
   },
