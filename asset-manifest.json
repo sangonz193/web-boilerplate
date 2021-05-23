@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "https://sangonz193.github.io/web-boilerplate/static/css/main.48e04d93.chunk.css",
-    "main.js": "https://sangonz193.github.io/web-boilerplate/static/js/main.c8fb3461.chunk.js",
-    "main.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/main.c8fb3461.chunk.js.map",
+    "main.js": "https://sangonz193.github.io/web-boilerplate/static/js/main.27c159bf.chunk.js",
+    "main.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/main.27c159bf.chunk.js.map",
     "runtime-main.js": "https://sangonz193.github.io/web-boilerplate/static/js/runtime-main.1714f43f.js",
     "runtime-main.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/runtime-main.1714f43f.js.map",
-    "static/js/2.42926aa6.chunk.js": "https://sangonz193.github.io/web-boilerplate/static/js/2.42926aa6.chunk.js",
-    "static/js/2.42926aa6.chunk.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/2.42926aa6.chunk.js.map",
+    "static/js/2.062abbd1.chunk.js": "https://sangonz193.github.io/web-boilerplate/static/js/2.062abbd1.chunk.js",
+    "static/js/2.062abbd1.chunk.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/2.062abbd1.chunk.js.map",
     "static/js/3.9a6eacd6.chunk.js": "https://sangonz193.github.io/web-boilerplate/static/js/3.9a6eacd6.chunk.js",
     "static/js/3.9a6eacd6.chunk.js.map": "https://sangonz193.github.io/web-boilerplate/static/js/3.9a6eacd6.chunk.js.map",
     "index.html": "https://sangonz193.github.io/web-boilerplate/index.html",
     "manifest.json": "https://sangonz193.github.io/web-boilerplate/manifest.json",
     "static/css/main.48e04d93.chunk.css.map": "https://sangonz193.github.io/web-boilerplate/static/css/main.48e04d93.chunk.css.map",
-    "static/js/2.42926aa6.chunk.js.LICENSE.txt": "https://sangonz193.github.io/web-boilerplate/static/js/2.42926aa6.chunk.js.LICENSE.txt",
+    "static/js/2.062abbd1.chunk.js.LICENSE.txt": "https://sangonz193.github.io/web-boilerplate/static/js/2.062abbd1.chunk.js.LICENSE.txt",
     "static/media/Roboto-Bold.4f39c579.ttf": "https://sangonz193.github.io/web-boilerplate/static/media/Roboto-Bold.4f39c579.ttf",
     "static/media/Roboto-Regular.03523cf5.ttf": "https://sangonz193.github.io/web-boilerplate/static/media/Roboto-Regular.03523cf5.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.1714f43f.js",
-    "static/js/2.42926aa6.chunk.js",
+    "static/js/2.062abbd1.chunk.js",
     "static/css/main.48e04d93.chunk.css",
-    "static/js/main.c8fb3461.chunk.js"
+    "static/js/main.27c159bf.chunk.js"
   ]
 }
