@@ -4,6 +4,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.19",
     "@fluentui/react": "^8.14.13",
+    "@sangonz193/utils": "^1.0.3",
     "graphql": "^15.5.0",
     "history": "^5.0.0",
     "keyboard-key": "^1.1.0",
@@ -25,6 +26,7 @@
     "dev:storybook": "node cli dev:storybook",
     "generate-files": "node cli generate-files",
     "generate-files:watch": "node cli generate-files -w",
+    "lint:fix": "eslint . --fix",
     "build": "node cli build",
     "test": "node cli test",
     "postinstall": "patch-package"

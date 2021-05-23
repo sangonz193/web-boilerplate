@@ -1,6 +1,5 @@
+import { dangerousKeysOf } from "@sangonz193/utils/dangerousKeysOf"
 import React from "react"
-
-import { dangerousKeysOf } from "../../_utils/dangerousKeysOf"
 
 // https://usehooks.com/useWhyDidYouUpdate
 

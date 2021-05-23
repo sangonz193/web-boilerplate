@@ -1,8 +1,8 @@
 import { executeCodegen } from "@graphql-codegen/cli"
 import * as typescriptPlugin from "@graphql-codegen/typescript"
+import { fs } from "@sangonz193/utils/node/fs"
 import path from "path"
 
-import { fs } from "../../_utils/fs"
 import { getFormattedCode } from "../../_utils/getFormattedCode"
 import { projectPath } from "../../_utils/projectPath"
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"

@@ -1,10 +1,10 @@
+import { hasProperty } from "@sangonz193/utils/hasProperty"
+import { fs } from "@sangonz193/utils/node/fs"
 import axios from "axios"
+import isObject from "lodash/isObject"
 import path from "path"
 import * as yup from "yup"
 
-import { hasProperty } from "../../../src/_utils/hasProperty"
-import { isObject } from "../../../src/_utils/isObject"
-import { fs } from "../../_utils/fs"
 import { getFormattedCode } from "../../_utils/getFormattedCode"
 import { projectPath } from "../../_utils/projectPath"
 import { generatedFileHeaderContent } from "./_utils/generatedFileHeaderContent"
