@@ -16,6 +16,6 @@ export const appConfig = {
 	backendUrl: BACKEND_URL,
 	version: process.env.npm_package_version as string,
 	storageScope: PUBLIC_URL.replace(/\/$/, "") || "/",
-	historyBasename: PUBLIC_URL.replace(/\/$/, ""),
+	historyBasename: PUBLIC_URL.startsWith("http") ? new URL(PUBLIC_URL).pathname : PUBLIC_URL.replace(/\/$/, ""),
 	baseUrl: location.origin.replace(/\/$/, ""),
 }
