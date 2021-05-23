@@ -1,6 +1,6 @@
+import { Stack } from "@fluentui/react"
 import React from "react"
 
-import { Div } from "../Div"
 import { Header } from "../Header"
 import { Navbar } from "../Navbar"
 import { LayoutContext, LayoutContextValue, LayoutOptions, SetLayoutOptions } from "./Layout.context"
@@ -32,14 +32,14 @@ export const Layout: React.FC<LayoutProps> = (props) => {
 
 	return (
 		<LayoutContext.Provider value={contextValue}>
-			<Div className={styles.wrapper}>
-				<Div className={styles.contentAndHeaderContainer}>
+			<Stack className={styles.wrapper}>
+				<Stack className={styles.contentAndHeaderContainer}>
 					<Header title={layoutOptionsWithOverrides?.headerTitle} />
-					<Div className={styles.componentContainer}>{children}</Div>
-				</Div>
+					<Stack className={styles.componentContainer}>{children}</Stack>
+				</Stack>
 
 				<Navbar />
-			</Div>
+			</Stack>
 		</LayoutContext.Provider>
 	)
 }

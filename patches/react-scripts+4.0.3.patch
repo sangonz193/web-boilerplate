@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-scripts/config/env.js b/node_modules/react-scripts/config/env.js
-index 0ad47cb..94bcd4e 100644
+index 0ad47cb..d12bdaf 100644
 --- a/node_modules/react-scripts/config/env.js
 +++ b/node_modules/react-scripts/config/env.js
 @@ -9,8 +9,7 @@
@@ -12,7 +12,7 @@ index 0ad47cb..94bcd4e 100644
  
  // Make sure that including paths.js after env.js will read .env variables.
  delete require.cache[require.resolve('./paths')];
-@@ -22,55 +21,15 @@ if (!NODE_ENV) {
+@@ -22,55 +21,29 @@ if (!NODE_ENV) {
    );
  }
  
@@ -26,7 +26,10 @@ index 0ad47cb..94bcd4e 100644
 -  `${paths.dotenv}.${NODE_ENV}`,
 -  paths.dotenv,
 -].filter(Boolean);
--
++if (fs.existsSync(".env")) {
++  dotenv.config({})
++}
+ 
 -// Load environment variables from .env* files. Suppress warnings using silent
 -// if this file is missing. dotenv will never modify any environment variables
 -// that have already been set.  Variable expansion is supported in .env files.
@@ -41,7 +44,12 @@ index 0ad47cb..94bcd4e 100644
 -    );
 -  }
 -});
--
++function getAppEnvVariables() {
++  const appEnvFileContent = fs.readFileSync(".env.app", "utf8")
++  const commentedEnvRegex = /# ([\w_]+)=\n/
++
++  let result = Object.keys(dotenv.parse(appEnvFileContent))
+ 
 -// We support resolving modules according to `NODE_PATH`.
 -// This lets you use absolute paths in imports inside large monorepos:
 -// https://github.com/facebook/create-react-app/issues/253.
@@ -57,14 +65,18 @@ index 0ad47cb..94bcd4e 100644
 -  .filter(folder => folder && !path.isAbsolute(folder))
 -  .map(folder => path.resolve(appDirectory, folder))
 -  .join(path.delimiter);
-+if (fs.existsSync(".env")) {
-+  dotenv.config({})
++  appEnvFileContent.match(new RegExp(commentedEnvRegex, "g"))?.forEach(match => {
++    const envName = match.match(commentedEnvRegex)?.[1]
++    if (envName) result.push(envName)
++  })
++  
++  return result
 +}
  
 -// Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
 -// injected into the application via DefinePlugin in webpack configuration.
 -const REACT_APP = /^REACT_APP_/i;
-+const appEnvVariables = Object.keys(dotenv.parse(fs.readFileSync(".env.app")));
++const appEnvVariables = getAppEnvVariables();
  
  function getClientEnvironment(publicUrl) {
    const raw = Object.keys(process.env)
@@ -74,10 +86,40 @@ index 0ad47cb..94bcd4e 100644
        (env, key) => {
          env[key] = process.env[key];
 diff --git a/node_modules/react-scripts/config/webpack.config.js b/node_modules/react-scripts/config/webpack.config.js
-index ba8fd0b..f32b053 100644
+index 26c2a65..35cfb3d 100644
 --- a/node_modules/react-scripts/config/webpack.config.js
 +++ b/node_modules/react-scripts/config/webpack.config.js
-@@ -777,7 +777,7 @@ module.exports = function (webpackEnv) {
+@@ -13,6 +13,7 @@ const path = require('path');
+ const webpack = require('webpack');
+ const resolve = require('resolve');
+ const PnpWebpackPlugin = require('pnp-webpack-plugin');
++const CopyWebpackPlugin = require('copy-webpack-plugin');
+ const HtmlWebpackPlugin = require('html-webpack-plugin');
+ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+ const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+@@ -598,6 +599,21 @@ module.exports = function (webpackEnv) {
+       ],
+     },
+     plugins: [
++      new CopyWebpackPlugin({
++        patterns: [
++          {
++            from: 'public/manifest.json',
++            to: 'manifest.json',
++            transform(content, path) {
++              const finalContent = Object.keys(process.env).reduce((result, key) => {
++                return result.replace(`process.env.${key}`, `${process.env[key]}`)
++              }, content.toString())
++              
++              return finalContent
++            },
++          }
++        ]
++      }),
+       // Generates an `index.html` file with the <script> injected.
+       new HtmlWebpackPlugin(
+         Object.assign(
+@@ -777,7 +793,7 @@ module.exports = function (webpackEnv) {
                }),
              },
            },

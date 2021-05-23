@@ -4,5 +4,5 @@ import { useInitializationStore } from "./useInitializationStore"
 
 export const useIsInitializing = () => {
 	const store = useInitializationStore()
-	return useReactiveVar(store.initializating)
+	return useReactiveVar(store.initializing)
 }

@@ -32,4 +32,7 @@ yarn-error.log*
 index.ts
 index.tsx
 !/src/index.tsx
+!/src/styles/themes/index.ts
 !/src/modules/**/index.ts
+*.ttf.d.ts
+*.svg.d.ts
