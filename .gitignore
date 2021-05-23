@@ -33,3 +33,6 @@ index.ts
 index.tsx
 *.ttf.d.ts
 *.svg.d.ts
+src/graphql/remoteSchema.types.ts
+public/index.html
+public/manifest.json

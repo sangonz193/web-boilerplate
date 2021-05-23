@@ -1,9 +1,10 @@
-name: CI
-
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-    code-analysis:
+    deploy:
         runs-on: ubuntu-latest
 
         steps:
@@ -36,7 +37,13 @@ jobs:
               run: npx tsc
 
             - name: ESLint check
-              run: npx eslint . --max-warnings=0
+              run: npm run lint
 
             - name: Tests
               run: npm test
+
+            - name: Build
+              run: npm run build
+
+            - name: Deploy
+              run: npx gh-pages -d build

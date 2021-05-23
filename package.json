@@ -26,6 +26,8 @@
     "dev:storybook": "node cli dev:storybook",
     "generate-files": "node cli generate-files",
     "generate-files:watch": "node cli generate-files -w",
+    "tsc": "tsc",
+    "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix",
     "build": "node cli build",
     "test": "node cli test",
