@@ -46,6 +46,7 @@ const command: CommandModule<
 				relativePath: args.relativePath ?? "src/components",
 				withChildren: config.withChildren ?? false,
 				withStyles: config.withStyles ?? true,
+				withStory: config.withStory ?? true,
 			}
 		}
 

@@ -1,7 +1,13 @@
 import { css, makeStyles } from "@fluentui/react"
 
+import { getUuid } from "{{getUuidImportPathFromStyles}}"
+
 export type {{componentName}}StyleProps = {
   className: string | undefined
+}
+
+export const {{camelCase componentName}}ClassNames = {
+	wrapper: `wrapper-${getUuid()}`,
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -16,6 +22,6 @@ export function use{{componentName}}Styles(props: {{componentName}}StyleProps) {
   const styles = useStyles()
   
   return {
-    wrapper: css(styles.wrapper, props.className),
+    wrapper: css({{camelCase componentName}}ClassNames.wrapper, styles.wrapper, props.className),
   }
 }
