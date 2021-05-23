@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => {
 		wrapper: {
 			height: "100%",
 
-			[getMinWidthSelector("md")]: {
-				["&&"]: {
+			"&&": {
+				[getMinWidthSelector("md")]: {
 					flexDirection: "row-reverse",
 				},
 			},

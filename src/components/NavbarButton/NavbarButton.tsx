@@ -1,7 +1,8 @@
-import { FontIcon, Link } from "@fluentui/react"
+import { FontIcon, ILinkProps, Link } from "@fluentui/react"
 import React from "react"
 
 import { useMatchPath } from "../../modules/Navigation"
+import { useHistory } from "../../modules/Navigation/useHistory"
 import { useLocation } from "../../modules/Navigation/useLocation"
 import { Div } from "../Div"
 import { useNavbarButtonStyles } from "./useNavbarButtonStyles"
@@ -24,13 +25,26 @@ const NavbarButtonComponent: React.FC<NavbarButtonProps> = ({ className, route, 
 
 	const active = matchPath !== null
 
+	const history = useHistory()
+	const handleClick = React.useCallback<Required<ILinkProps>["onClick"]>(
+		(e) => {
+			if (e.defaultPrevented) {
+				return
+			}
+
+			e.preventDefault()
+			history.push(route)
+		},
+		[history, route]
+	)
+
 	const styles = useNavbarButtonStyles({
 		className,
 		active,
 	})
 
 	return (
-		<Link className={styles.wrapper} title={routeName} href={route}>
+		<Link className={styles.wrapper} title={routeName} href={route} onClick={handleClick}>
 			{active && <Div className={styles.activeIndicator} />}
 			<FontIcon iconName={iconName} className={styles.icon} />
 		</Link>

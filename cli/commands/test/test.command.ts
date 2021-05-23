@@ -4,12 +4,12 @@ import { CommandModule } from "yargs"
 import { projectPath } from "../../_utils/projectPath"
 
 const command: CommandModule<{}, {}> = {
-	command: "build",
+	command: "test",
 
-	describe: "Bundles the app to be deployed",
+	describe: "Runs tests.",
 
 	handler: async () => {
-		await spawn("npx", ["react-scripts", "build"], {
+		await spawn("npx", ["react-scripts", "test"], {
 			stdio: "inherit",
 			cwd: projectPath,
 			env: {
