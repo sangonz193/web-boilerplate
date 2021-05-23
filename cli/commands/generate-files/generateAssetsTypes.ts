@@ -35,7 +35,7 @@ export const generateAssetsTypes = async (watch: boolean) => {
 
 	await Promise.all(
 		filePaths.map(async (filePath) => {
-			await fs.writeFile(filePath + ".d.ts", `declare const filePath: string;\n` + `export default filePath;\n`)
+			await generateAssetTypes(filePath)
 		})
 	)
 
