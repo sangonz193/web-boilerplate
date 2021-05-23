@@ -41,7 +41,6 @@
     ".*.js",
     "**/*.ts",
     "**/*.tsx",
-    ".storybook/preview.js",
-    ".storybook/main.js",
+    ".storybook/*",
   ]
 }

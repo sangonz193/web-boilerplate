@@ -12,6 +12,10 @@ const command: CommandModule<{}, {}> = {
 		await spawn("npx", ["react-scripts", "build"], {
 			stdio: "inherit",
 			cwd: projectPath,
+			env: {
+				...process.env,
+				SKIP_PREFLIGHT_CHECK: "true",
+			},
 		})
 	},
 }

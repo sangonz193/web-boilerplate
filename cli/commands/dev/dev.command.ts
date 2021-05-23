@@ -13,6 +13,10 @@ const command: CommandModule<{}, {}> = {
 			spawn("npx", ["react-scripts", "start"], {
 				stdio: "inherit",
 				cwd: projectPath,
+				env: {
+					...process.env,
+					SKIP_PREFLIGHT_CHECK: "true",
+				},
 			}),
 			spawn("node", ["cli", "generate-files", "-w"]),
 		])
