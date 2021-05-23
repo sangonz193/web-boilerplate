@@ -25,7 +25,7 @@
     "dev:storybook": "start-storybook -p 6006 -s public",
     "generate-files": "node cli generate-files",
     "build": "node cli  build",
-    "test": "react-scripts test",
+    "test": "node cli test",
     "postinstall": "patch-package"
   },
   "repository": {

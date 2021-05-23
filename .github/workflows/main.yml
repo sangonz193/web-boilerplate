@@ -1,8 +1,6 @@
 name: CI
 
-on:
-    pull_request:
-        branches: [main, develop]
+on: push
 
 jobs:
     code-analysis:
@@ -34,3 +32,6 @@ jobs:
 
             - name: ESLint check
               run: npx eslint . --max-warnings=0
+
+            - name: Tests
+              run: npm test
