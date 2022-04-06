@@ -1,5 +1,5 @@
 diff --git a/node_modules/react-scripts/config/env.js b/node_modules/react-scripts/config/env.js
-index 0ad47cb..3fb63ce 100644
+index 4d134a0..dbf653e 100644
 --- a/node_modules/react-scripts/config/env.js
 +++ b/node_modules/react-scripts/config/env.js
 @@ -9,8 +9,7 @@
@@ -50,7 +50,7 @@ index 0ad47cb..3fb63ce 100644
 +    const envName = match.match(commentedEnvRegex)?.[1]
 +    if (envName) result.push(envName)
 +  })
-   
+ 
 -// We support resolving modules according to `NODE_PATH`.
 -// This lets you use absolute paths in imports inside large monorepos:
 -// https://github.com/facebook/create-react-app/issues/253.
@@ -82,53 +82,42 @@ index 0ad47cb..3fb63ce 100644
        (env, key) => {
          env[key] = process.env[key];
 diff --git a/node_modules/react-scripts/config/webpack.config.js b/node_modules/react-scripts/config/webpack.config.js
-index 26c2a65..35cfb3d 100644
+index 2b1b3bb..8f292a0 100644
 --- a/node_modules/react-scripts/config/webpack.config.js
 +++ b/node_modules/react-scripts/config/webpack.config.js
 @@ -13,6 +13,7 @@ const path = require('path');
  const webpack = require('webpack');
  const resolve = require('resolve');
- const PnpWebpackPlugin = require('pnp-webpack-plugin');
-+const CopyWebpackPlugin = require('copy-webpack-plugin');
  const HtmlWebpackPlugin = require('html-webpack-plugin');
++const CopyWebpackPlugin = require('copy-webpack-plugin');
  const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
  const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
-@@ -598,6 +599,21 @@ module.exports = function (webpackEnv) {
-       ],
+ const TerserPlugin = require('terser-webpack-plugin');
+@@ -602,6 +603,19 @@ module.exports = function (webpackEnv) {
+       ].filter(Boolean),
      },
      plugins: [
 +      new CopyWebpackPlugin({
-+        patterns: [
-+          {
-+            from: 'public/manifest.json',
-+            to: 'manifest.json',
-+            transform(content, path) {
-+              const finalContent = Object.keys(process.env).reduce((result, key) => {
-+                return result.replace(`process.env.${key}`, `${process.env[key]}`)
-+              }, content.toString())
-+              
-+              return finalContent
-+            },
-+          }
-+        ]
++        patterns: [{
++          from: 'public/manifest.json',
++          to: 'manifest.json',
++          transform(content, path) {
++            const finalContent = Object.keys(process.env).reduce((result, key) => {
++              return result.replace(`process.env.${key}`, `${process.env[key]}`)
++            }, content.toString());
++
++            return finalContent;
++          },
++        }]
 +      }),
        // Generates an `index.html` file with the <script> injected.
        new HtmlWebpackPlugin(
          Object.assign(
-@@ -777,7 +793,7 @@ module.exports = function (webpackEnv) {
-               }),
-             },
-           },
--        }),
-+        })
-     ].filter(Boolean),
-     // Some libraries import Node modules but don't use them in the browser.
-     // Tell webpack to provide empty mocks for them so importing them works.
 diff --git a/node_modules/react-scripts/scripts/start.js b/node_modules/react-scripts/scripts/start.js
-index ffbb15d..b3cef7d 100644
+index 8b9a2c2..cac3d43 100644
 --- a/node_modules/react-scripts/scripts/start.js
 +++ b/node_modules/react-scripts/scripts/start.js
-@@ -156,7 +156,7 @@ checkBrowsers(paths.appPath, isInteractive)
+@@ -136,7 +136,7 @@ checkBrowsers(paths.appPath, isInteractive)
        }
  
        console.log(chalk.cyan('Starting the development server...\n'));

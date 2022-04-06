@@ -5,9 +5,9 @@ import { listenVar } from "./listenVar"
 
 export function makeComputedVar<ArrT extends readonly [ReactiveVar<any>, ...Array<ReactiveVar<any>>], TReturn>(
 	reactiveVars: ArrT,
-	listener: (
-		values: { -readonly [i in keyof ArrT]: ArrT[i] extends ReactiveVar<infer TVar> ? TVar : never }
-	) => TReturn
+	listener: (values: {
+		-readonly [i in keyof ArrT]: ArrT[i] extends ReactiveVar<infer TVar> ? TVar : never
+	}) => TReturn
 ) {
 	const listenersParams = reactiveVars.map((reactiveVar) => reactiveVar()) as {
 		-readonly [i in keyof ArrT]: ArrT[i] extends ReactiveVar<infer TVar> ? TVar : never

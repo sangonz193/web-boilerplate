@@ -1,11 +1,18 @@
-import { CLIEngine } from "eslint"
+import { ESLint } from "eslint"
 import path from "path"
 
 import { projectPath } from "./projectPath"
 
-export const getFormattedCode = (code: string): string => {
+export const getFormattedCode = async (code: string): Promise<string> => {
+	if (
+		((
+			await new ESLint({ fix: true }).lintText(code, { filePath: path.resolve(projectPath, "src", "index.tsx") })
+		)[0].output ?? code) === undefined
+	) {
+		debugger
+	}
 	return (
-		new CLIEngine({ fix: true }).executeOnText(code, path.resolve(projectPath, "src", "index.tsx")).results[0]
+		(await new ESLint({ fix: true }).lintText(code, { filePath: path.resolve(projectPath, "src", "index.tsx") }))[0]
 			.output ?? code
 	)
 }

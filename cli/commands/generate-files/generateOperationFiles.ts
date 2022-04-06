@@ -82,7 +82,7 @@ const runCodegen = async (options: GenerateOperationFilesOptions, graphqlFilesPa
 		codegenResult.map(async (i) => {
 			await fs.writeFile(
 				i.filename,
-				getFormattedCode(
+				await getFormattedCode(
 					generatedFileHeaderContent +
 						(i.content.includes("* as Types") && !i.content.match(/\bTypes\./)
 							? i.content.replace(/import \* as Types.+\n(\n)?/, "")
