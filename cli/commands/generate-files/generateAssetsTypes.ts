@@ -17,7 +17,7 @@ const getAssetTypesFilePath = (filePath: string) => filePath + ".d.ts"
 const generateAssetTypes = async (filePath: string) => {
 	await fs.writeFile(
 		getAssetTypesFilePath(filePath),
-		getFormattedCode(
+		await getFormattedCode(
 			generatedFileHeaderContent + `declare const filePath: string;\n` + `export default filePath;\n`
 		)
 	)

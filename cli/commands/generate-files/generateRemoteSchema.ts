@@ -1,5 +1,5 @@
-import { loadSchema } from "@graphql-toolkit/core"
 import { CodeFileLoader } from "@graphql-tools/code-file-loader"
+import { loadSchema } from "@graphql-tools/load"
 import { UrlLoader } from "@graphql-tools/url-loader"
 import { fs } from "@sangonz193/utils/node/fs"
 import chalk from "chalk"
@@ -45,7 +45,7 @@ export const generateRemoteSchema = async () => {
 	if (writeToLocalFile) {
 		await fs.writeFile(
 			remoteSchemaFilePath,
-			getFormattedCode(
+			await getFormattedCode(
 				generatedFileHeaderContent +
 					'import gql from "graphql-tag";\n\n' +
 					"export const remoteSchema = gql`" +

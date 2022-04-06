@@ -32,7 +32,7 @@ const handlePossibleComponentFolder = async (possibleComponentFolderPath: string
 	if (filePathsToExportFrom.length) {
 		await fs.writeFile(
 			indexFilePath,
-			getFormattedCode(
+			await getFormattedCode(
 				generatedFileHeaderContent +
 					filePathsToExportFrom
 						.sort()

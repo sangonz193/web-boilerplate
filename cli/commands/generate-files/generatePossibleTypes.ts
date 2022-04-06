@@ -54,7 +54,7 @@ export const generatePossibleTypes = async () => {
 
 		await fs.writeFile(
 			path.resolve(projectPath, "src", "graphql", "remoteSchemaPossibleTypes.ts"),
-			getFormattedCode(
+			await getFormattedCode(
 				generatedFileHeaderContent + "export const possibleTypes = " + JSON.stringify(possibleTypesMap)
 			)
 		)
